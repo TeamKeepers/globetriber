@@ -4,6 +4,7 @@ namespace App\Entity\Product;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Console\Helper\Table;
+use Doctrine\ORM\Mapping\Table;
 
 /**
  * Sleep
@@ -34,25 +35,12 @@ class Sleep extends Place {
     private $id;
 
     /**
-     * @var int|null
-     * @ORM\OneToOne(targetEntity="Place", mappedBy="amenities")
-     * @ORM\Column(name="id_place", type="integer", nullable=true)
-     */
-    private $place;
-
-    /**
      * @var int
      *
      * @ORM\Column(name="bed", type="integer", nullable=false)
      */
     private $bed;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="wifi", type="string", length=32, nullable=false)
-     */
-    private $wifi;
 
     /**
      * @var bool
@@ -101,10 +89,6 @@ class Sleep extends Place {
         return $this->bed;
     }
 
-    function getWifi() {
-        return $this->wifi;
-    }
-
     function getDesk() {
         return $this->desk;
     }
@@ -137,9 +121,6 @@ class Sleep extends Place {
         $this->bed = $bed;
     }
 
-    function setWifi($wifi) {
-        $this->wifi = $wifi;
-    }
 
     function setDesk($desk) {
         $this->desk = $desk;

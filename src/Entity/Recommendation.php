@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Entity\Product\Place;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\Table;
 
 /**
  * Recommendation

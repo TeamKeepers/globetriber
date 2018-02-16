@@ -8,6 +8,8 @@ use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\JoinTable;
 use Doctrine\ORM\Mapping\ManyToMany;
 use Symfony\Component\Validator\Constraints\DateTime;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * User
@@ -30,21 +32,21 @@ class User {
 
     /**
      * @var string
-     *
+     * @Assert\Length(min=2, max= 100)
      * @ORM\Column(name="firstname", type="string", length=100, nullable=false)
      */
     private $firstname;
 
     /**
      * @var string
-     *
+     * @Assert\Length(min=2, max= 100)
      * @ORM\Column(name="lastname", type="string", length=100, nullable=false)
      */
     private $lastname;
 
     /**
      * @var string
-     *
+     * 
      * @ORM\Column(name="email", type="string", length=255, nullable=false)
      */
     private $email;
@@ -131,7 +133,7 @@ class User {
     private $myFriends;
 
     /**
-     * Many Users have Many Groups.
+     * Many Users have Many Tchat .
      * @ORM\Column(name="messages", type="integer", nullable=false)
      * @ManyToMany(targetEntity="Tchat", inversedBy="users")
      * @JoinTable(name="tchat")

@@ -1,9 +1,10 @@
 <?php
 
+namespace App\Entity\Product;
+
 use App\Entity\Product\Place;
 use Symfony\Component\Console\Helper\Table;
 
-namespace App\Entity\Product;
 
 /**
  * Description of Work

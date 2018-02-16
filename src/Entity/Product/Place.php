@@ -11,6 +11,8 @@ use Doctrine\ORM\Mapping\DiscriminatorColumn;
 use Doctrine\ORM\Mapping\DiscriminatorMap;
 use Doctrine\ORM\Mapping\InheritanceType;
 use Symfony\Bridge\Doctrine\Tests\Fixtures\User;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 // The @DiscriminatorMap specifies which values of the discriminator column identify a row as being of which type.
 /**
@@ -19,7 +21,7 @@ use Symfony\Bridge\Doctrine\Tests\Fixtures\User;
  * @ORM\Table(name="place")
  * @ORM\Entity
  * @InheritanceType("JOINED")
- * @DiscriminatorColumn(name="type", type="string")
+ * @DiscriminatorColumn(name="discr", type="string")
  * @DiscriminatorMap({"sleep" = "Sleep", "work" ="Work"})
  */
 class Place {
@@ -47,6 +49,13 @@ class Place {
      * @ORM\Column(name="description", type="text", length=1000, nullable=false)
      */
     protected $description;
+    
+        /**
+     * @var string
+     * @ORM\Column(name="internet", type="string", length=100, nullable=false)
+     * @Assert\Choice({"wifi", "ethernet", "fibre", "adsl"})
+     */
+    protected $internet;
 
     /**
      * @var string
@@ -113,7 +122,7 @@ class Place {
     /**
      * @var user
      * @ORM\Column(name="user", type="integer", nullable=true)
-     *  @ORM\ManyToOne(targetEntity="User", inversedBy="createdPlaces")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="createdPlaces")
      */
     private $user;
 
@@ -134,7 +143,7 @@ class Place {
     /**
      * @ORM\Column(name="medias", type="integer", nullable=true)
      * @ORM\OneToMany(targetEntity="Media", mappedBy="place")
-     * @var 
+     * 
      */
     private $medias;
 
@@ -144,5 +153,142 @@ class Place {
      * @ORM\ManyToOne(targetEntity="Recommendation", inversedBy="place")
      */
     private $recommendations;
+
+    function getId() {
+        return $this->id;
+    }
+
+    function getTitle() {
+        return $this->title;
+    }
+
+    function getDescription() {
+        return $this->description;
+    }
+
+    function getImage() {
+        return $this->image;
+    }
+
+    function getAccessibility() {
+        return $this->accessibility;
+    }
+
+    function getKitchen() {
+        return $this->kitchen;
+    }
+
+    function getParking() {
+        return $this->parking;
+    }
+
+    function getAddress() {
+        return $this->address;
+    }
+
+    function getTown() {
+        return $this->town;
+    }
+
+    function getLng() {
+        return $this->lng;
+    }
+
+    function getLat() {
+        return $this->lat;
+    }
+
+    function getCountry() {
+        return $this->country;
+    }
+
+    function getUser(): user {
+        return $this->user;
+    }
+
+    function getOwner(): user {
+        return $this->owner;
+    }
+
+    function getBookings() {
+        return $this->bookings;
+    }
+
+    function getMedias() {
+        return $this->medias;
+    }
+
+    function getRecommendations() {
+        return $this->recommendations;
+    }
+
+    function setId($id) {
+        $this->id = $id;
+    }
+
+    function setTitle($title) {
+        $this->title = $title;
+    }
+
+    function setDescription($description) {
+        $this->description = $description;
+    }
+
+    function setImage($image) {
+        $this->image = $image;
+    }
+
+    function setAccessibility($accessibility) {
+        $this->accessibility = $accessibility;
+    }
+
+    function setKitchen($kitchen) {
+        $this->kitchen = $kitchen;
+    }
+
+    function setParking($parking) {
+        $this->parking = $parking;
+    }
+
+    function setAddress($address) {
+        $this->address = $address;
+    }
+
+    function setTown($town) {
+        $this->town = $town;
+    }
+
+    function setLng($lng) {
+        $this->lng = $lng;
+    }
+
+    function setLat($lat) {
+        $this->lat = $lat;
+    }
+
+    function setCountry($country) {
+        $this->country = $country;
+    }
+
+    function setUser(user $user) {
+        $this->user = $user;
+    }
+
+    function setOwner(user $owner) {
+        $this->owner = $owner;
+    }
+
+    function setBookings($bookings) {
+        $this->bookings = $bookings;
+    }
+
+    function setMedias($medias) {
+        $this->medias = $medias;
+    }
+
+    function setRecommendations($recommendations) {
+        $this->recommendations = $recommendations;
+    }
+
 
 }
