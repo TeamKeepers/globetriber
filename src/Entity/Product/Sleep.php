@@ -3,9 +3,9 @@
 namespace App\Entity\Product;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Console\Helper\Table;
+use App\Entity\Product\Place;
 use Doctrine\ORM\Mapping\Table;
-
+use Doctrine\ORM\Mapping\Index;
 /**
  * Sleep
  * Note that this class extends Place
@@ -13,7 +13,6 @@ use Doctrine\ORM\Mapping\Table;
  * @ORM\Entity
  * @Table(indexes={
  *          @Index(name="bed_index", columns={"bed"}), 
- *          @Index(name="wifi_index", columns={"wifi"}), 
  *          @Index(name="desk_index", columns={"desk"}), 
  *          @Index(name="airConditioning_index", columns={"airConditioning"}), 
  *          @Index(name="washingMachine_index", columns={"washingMachine"}), 
@@ -32,7 +31,7 @@ class Sleep extends Place {
      * @ORM\GeneratedValue(strategy="IDENTITY")
      * 
      */
-    private $id;
+    protected $id;
 
     /**
      * @var int
@@ -52,14 +51,14 @@ class Sleep extends Place {
     /**
      * @var bool
      *
-     * @ORM\Column(name="air_conditioning", type="boolean", nullable=false)
+     * @ORM\Column(name="airConditioning", type="boolean", nullable=false)
      */
     private $airConditioning;
 
     /**
      * @var bool
      *
-     * @ORM\Column(name="washing_machine", type="boolean", nullable=false)
+     * @ORM\Column(name="washingMachine", type="boolean", nullable=false)
      */
     private $washingMachine;
 

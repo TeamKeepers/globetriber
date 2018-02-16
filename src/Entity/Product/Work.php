@@ -2,8 +2,12 @@
 
 namespace App\Entity\Product;
 
+use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Product\Place;
-use Symfony\Component\Console\Helper\Table;
+use Doctrine\ORM\Mapping\Table;
+use Doctrine\ORM\Mapping\Index;
+
+
 
 
 /**
@@ -33,7 +37,7 @@ class Work extends Place {
      * @ORM\Id
      * @var int
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(name="capacity", type="integer", nullable=false)

@@ -12,6 +12,7 @@ use Doctrine\ORM\Mapping\DiscriminatorMap;
 use Doctrine\ORM\Mapping\InheritanceType;
 use Symfony\Bridge\Doctrine\Tests\Fixtures\User;
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Annotations\DocLexer;
 
 
 // The @DiscriminatorMap specifies which values of the discriminator column identify a row as being of which type.
@@ -22,7 +23,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity
  * @InheritanceType("JOINED")
  * @DiscriminatorColumn(name="discr", type="string")
- * @DiscriminatorMap({"sleep" = "Sleep", "work" ="Work"})
+ * @DiscriminatorMap({"place" = "Place", "sleep" = "Sleep", "work" ="Work"})
  */
 class Place {
 
@@ -60,7 +61,6 @@ class Place {
     /**
      * @var string
      * @ORM\Column(type="string")
-     * @Assert\Image(minWidth=300, MinHeight=300, maxSize="1024k")
      * 
      */
     protected $image;
@@ -79,7 +79,7 @@ class Place {
     protected $kitchen;
 
     /**
-     * @ORM\Column(name="parking", type="boolean", nullable=false)
+     * @ORM\Column(name="parking", type="boolean", )
      * @var bool
      */
     protected $parking;
@@ -101,14 +101,14 @@ class Place {
     /**
      * @var string
      * 
-     * @ORM\Column(name="lng", type="decimal", precision=11, scale=8, nullable=false)
+     * @ORM\Column(name="lng", type="decimal", precision=11, scale=8)
      */
     protected $lng;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="lat", type="decimal", precision=11, scale=08 nullable=false)
+     * @ORM\Column(name="lat", type="decimal", precision=11, scale=08)
      */
     protected $lat;
 
