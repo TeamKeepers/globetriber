@@ -1,0 +1,104 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    
+<!-- Carousel -->
+<div id="carouselExampleIndicators" class="carousel slide">
+    <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+        <div class="carousel-item active">
+            <div class="page-header header-filter">
+                <div class="page-header-image" style="background-image: url('../assets/img/mainRoom4.jpg');"></div><!-- REVOIR LES CHEMINS! -->
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="page-header header-filter">
+                <div class="page-header-image" style="background-image: url('../assets/img/desk2.jpg');"></div><!-- REVOIR LES CHEMINS! -->
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="page-header header-filter">
+                <div class="page-header-image" style="background-image: url('../assets/img/room6.jpg');"></div><!-- REVOIR LES CHEMINS! -->
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="page-header header-filter">
+                <div class="page-header-image" style="background-image: url('../assets/img/kitchen4.jpg');"></div><!-- REVOIR LES CHEMINS! -->
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="page-header header-filter">
+                <div class="page-header-image" style="background-image: url('../assets/img/bathroom4.jpg');"></div><!-- REVOIR LES CHEMINS! -->
+            </div>
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <i class="fas fa-angle-left fa-3x"></i>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <i class="fas fa-angle-right fa-3x"></i>
+    </a>
+</div>
+<!-- End carousel -->
+
+<!-- Description -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2 text-center">
+            <!-- {{ place.title }} -->
+            <h2 class="title">Ici, on insère le titre vendeur du produit</h2>
+            <!-- {{ place.description }} -->
+            <h4 class="description small text-justify">Ici, on insère la description du produit (2000 caractères). 
+
+                Ipiscing elit. Phasellus tincidunt lorem vitae blandit ullamcorper. Vestibulum pellentesque ligula quam. Aenean tempus sapien quis molestie bibendum. Curabitur sodales odio purus, nec laoreet dolor porttitor sed. Mauris vitae neque vel elit sodales porta vel nec lacus. Suspendisse aliquet efficitur dapibus. Praesent mi justo, posuere nec maximus eget, mollis pharetra est. Vivamus placerat ac leo non cursus. Suspendisse pulvinar iaculis sapien.
+
+                Proin hendrerit sollicitudin pharetra. Pellentesque scelerisque velit vitae rhoncus pulvinar. Cras vestibulum felis ante, ac viverra ex facilisis quis. Sed bibendum neque a metus vehicula, vitae maximus turpis scelerisque. Nullam nec nulla a purus dictum ultricies. Donec tincidunt tincidunt velit, non feugiat turpis rhoncus et. Suspendisse vulputate urna et orci porta ornare.
+
+                Donec molestie blandit nisi non gravida. Suspendisse in luctus erat, quis consequat leo. Donec rhoncus maximus felis ut aliquam. Aenean aliquam orci nibh, quis faucibus purus volutpat sit amet. Maecenas condimentum sollicitudin dolor nec convallis. Mauris non rutrum augue. Nulla facilisi. Mauris id ex ipsum. Ut efficitur sem at enim efficitur, consequat ullamcorper neque lacinia. Morbi ac urna sed nibh lobortis condimentum vitae sed tellus. Nam non aliquam orci.
+
+                Nullam eu condimentum arcu, vitae pellentesque mauris. Integer lacinia sapien non est mattis lacinia. Proin tempus bibendum ante, a posuere diam efficitur sed. Curabitur cursus purus non mattis egestas. Vivamus commodo vestibulum pulvinar. Donec luctus, nisi non pretium ornare, purus quam consequat mi, sed volutpat libero elit in erat. Nam varius sed sapien eget egestas. Vestibulum pulvinar pharetra metus, quis ultricies ligula interdum ac. Mauris molestie, urna ut malesuada fringilla, ex risus tincidunt tortor, non dapibus lectus eros in erat. Vivamus id feugiat magna. Pellentesque non consectetur ligula, ac hendrerit quam. Aenean et elit feugiat massa nunc. </h4>
+        </div>
+        <!-- Pouce en l'air / pouce en bas -->
+        <div class="col-md-2 like text-center">
+            <p>Note du lieu:</p>
+            <a href=""><i class="fas fa-check"></i></a>
+            <a href=""><i class="fas fa-times"></i></a>
+            <p>x% des gens conseillent ce lieu</p> <!-- A rendre dynamique -->
+        </div>
+        <!-- Fin Pouce en l'air / pouce en bas -->
+    </div>
+</div>
+<!-- End Description -->
+
+<!-- Amenities -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 ml-auto mr-auto text-center">
+            <!-- {{ place.amenities }} -->
+            <h4 class="description">Ici, on insère la liste des amenities</h4>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Wifi</li><!-- {{ Rendre dynamique }} -->
+                <li class="list-group-item">Bureau</li><!-- {{ Rendre dynamique }} -->
+                <li class="list-group-item">Scanner</li><!-- {{ Rendre dynamique }} -->
+                <li class="list-group-item">Imprimante</li><!-- {{ Rendre dynamique }} -->
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- End Amenities -->
+
+<!-- Commentaires -->
+<div class="container comment col-md-7 ml-auto mr-autojumbotron rounded">
+    <h1 class="small display-4">Comment posted by user1234 on September 21 2018 at 18:34</h1><!-- {{ Rendre dynamique avec le nom du user et la date }} -->
+    <hr class="my-4">
+    <p class="lead">J'ai passé un super moment chez machine !  Elle a été super accueillante et m'a offert pleins de cookies !</p> <!-- {{ place.description }} -->
+</div>
+<!-- End Commentaires -->
+
+{% endblock %}
