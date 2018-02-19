@@ -1,18 +1,17 @@
 <?php
 
-namespace App\Entity\Product;
+namespace App\Entity;
 
 use App\Entity\Booking;
 use App\Entity\Media;
 use App\Entity\Recommendation;
-use App\Entity\Sleep;
+use App\Entity\User;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\DiscriminatorColumn;
 use Doctrine\ORM\Mapping\DiscriminatorMap;
 use Doctrine\ORM\Mapping\InheritanceType;
-use Symfony\Bridge\Doctrine\Tests\Fixtures\User;
 use Symfony\Component\Validator\Constraints as Assert;
-use Doctrine\Common\Annotations\DocLexer;
 
 
 // The @DiscriminatorMap specifies which values of the discriminator column identify a row as being of which type.
@@ -120,37 +119,42 @@ class Place {
     protected $country;
 
     /**
-     * @var user
-     * @ORM\Column(name="user", type="integer", nullable=true)
+     * 
      * @ORM\ManyToOne(targetEntity="User", inversedBy="createdPlaces")
+     * 
      */
     private $user;
 
     /**
-     * @var user
-     * @ORM\Column(name="owner", type="integer", nullable=true)
+     * 
      * @ORM\ManyToOne(targetEntity="User", inversedBy="ownedPlace")
+     * @var user
+     * 
      */
     private $owner;
 
     /**
-     * @ORM\Column(name="bookings", type="integer", nullable=true)
+     * 
      * @ORM\OneToMany(targetEntity="Booking", mappedBy="place")
+     * 
+     * @var Collection
      *  
      */
     private $bookings;
 
     /**
-     * @ORM\Column(name="medias", type="integer", nullable=true)
+     * 
      * @ORM\OneToMany(targetEntity="Media", mappedBy="place")
+     * 
+     * @var Collection
      * 
      */
     private $medias;
 
     /**
      *  
-     * @ORM\Column(name="recommendations", type="integer", nullable=true)
      * @ORM\ManyToOne(targetEntity="Recommendation", inversedBy="place")
+     * 
      */
     private $recommendations;
 
