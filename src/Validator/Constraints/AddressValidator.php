@@ -14,7 +14,7 @@ class AddressValidator extends ConstraintValidator
 
         $distJson = file_get_contents(self::URL_GOOGLE . urlencode($value));
         
-        $data = json_decode($distJson);
+        $data = json_decode($distJson, TRUE);
         
         if(empty($data['status'])  ||  $data['status'] !== 'OK') {
             $this->context->buildViolation($constraint->message)

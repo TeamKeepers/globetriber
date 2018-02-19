@@ -2,9 +2,10 @@
 
 namespace App\Entity;
 
-use App\Entity\Product\Place;
+use App\Entity\Place;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\Table;
+use Symfony\Component\Validator\Constraints\Collection;
 
 /**
  * Recommendation
@@ -27,16 +28,16 @@ class Recommendation
     /**
      * @var int|null
      * @ORM\OneToMany(targetEntity="Place", mappedBy="recommendations")
-     * @ORM\Column(name="place", type="integer", nullable=true)
+     * @var Collection
      */
     private $place;
 
     /**
      * @var int|null
      * @ORM\ManyToOne(targetEntity="User", inversedBy="recommendations")
-     * @ORM\Column(name="id_user", type="integer", nullable=true)
+     * @var Collection
      */
-    private $User;
+    private $user;
 
     /**
      * @var bool
@@ -51,6 +52,11 @@ class Recommendation
      * @ORM\Column(name="comment", type="text", length=65535, nullable=false)
      */
     private $comment;
+    
+    public function __construct() {
+        $this->user = new ArrayCollection();
+        $this->place = new ArrayCollection();
+    }
 
     function getId() {
         return $this->id;

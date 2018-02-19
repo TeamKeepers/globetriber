@@ -23,13 +23,10 @@ class Tchat
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
-
-   
+ 
     /**
-     * @var int|null
-     * Many Groups have Many Users.
      * @ManyToMany(targetEntity="User", mappedBy="messages")
-     * @ORM\Column(name="users", type="integer", nullable=true)
+     * @var Collection
      */
     private $users;
   
@@ -43,12 +40,11 @@ class Tchat
 
     /**
      * @var DateTime
-     *
      * @ORM\Column(name="sent_time", type="datetime", nullable=false)
      */
     private $sentTime;
 
-       public function __construct() {
+    public function __construct() {
         $this->users = new ArrayCollection();
     }
    
