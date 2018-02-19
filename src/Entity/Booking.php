@@ -2,9 +2,11 @@
 
 namespace App\Entity;
 
-use App\Entity\Product\Place;
+use App\Entity\Place;
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\Collection;
 
 /**
  * Booking
@@ -24,8 +26,7 @@ class Booking
     private $id;
 
     /**
-     * @var int|null
-     * @ORM\Column(name="id_place", type="integer", nullable=true)
+     * @var Collection
      * @ORM\ManyToOne(targetEntity="Place", inversedBy="bookings")
      * 
      */
@@ -51,14 +52,19 @@ class Booking
      * @ORM\Column(name="booking_status", type="boolean", nullable=false)
      */
     private $bookingStatus;
+    
+    public function __construct() {
+        $this->place = new ArrayCollection();
+    }
 
     function getId() {
         return $this->id;
     }
 
-    function getPlace() {
+        public function getPlace(): Collection {
         return $this->place;
     }
+
 
     function getArrivalDate(): DateTime {
         return $this->arrivalDate;
@@ -76,10 +82,12 @@ class Booking
         $this->id = $id;
     }
 
-    function setPlace($place) {
+    public function setPlace(Collection $place) {
         $this->place = $place;
+        return $this;
     }
 
+    
     function setArrivalDate(DateTime $arrivalDate) {
         $this->arrivalDate = $arrivalDate;
     }
