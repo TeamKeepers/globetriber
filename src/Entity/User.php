@@ -4,14 +4,10 @@ namespace App\Entity;
 
 use App\Entity\Place;
 use App\Repository\UserRepository;
-use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\JoinColumn;
-use Doctrine\ORM\Mapping\JoinTable;
 use Doctrine\ORM\Mapping\ManyToMany;
-use Serializable;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -22,7 +18,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * User
  * 
  * @ORM\Table(name="user")
- * @ORM\Entity(repositoryClass="UserRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * 
  * @UniqueEntity(fields="email", message="Email déjà enregistré")
  * @UniqueEntity(fields="username", message="Pseudo déjà enregistré")
@@ -89,7 +85,7 @@ class User implements UserInterface, \Serializable
 
     /**
      *
-     * @ORM\Column(name="birthdate", type="date", nullable=false)
+     * @ORM\Column(name="birthdate", type="date")
      * @Assert\DateTime()
      * 
      */
@@ -98,20 +94,20 @@ class User implements UserInterface, \Serializable
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text", length=2000, nullable=false)
+     * @ORM\Column(name="description", type="text", length=2000)
      */
     private $description;
 
     /**
      * @var bool
      *
-     * @ORM\Column(name="activity_status", type="boolean")
+     * @ORM\Column(name="activity_status", type="boolean", options={"default":false})
      */
     private $activityStatus;
 
     /**
      *
-     * @ORM\Column(name="roles", type="string", nullable=false)
+     * @ORM\Column(name="roles", type="string")
      */
     private $roles;
 
@@ -162,10 +158,6 @@ class User implements UserInterface, \Serializable
     /**
      * Many Users have many Users.
      * @ManyToMany(targetEntity="User", inversedBy="friendsWithMe")
-     * @JoinTable(name="tribe",
-     *      joinColumns={@JoinColumn(name="user_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@JoinColumn(name="friend_user_id", referencedColumnName="id")}
-     *      )
      * @var Collection
      * 
      */
@@ -185,7 +177,7 @@ class User implements UserInterface, \Serializable
         $this->messages = new ArrayCollection();
     }
     
-    /** @seeSerializablee::serialize() */
+    /** @see \Serializable::serialize() */
     public function serialize()
     {
         return serialize(array(
@@ -197,7 +189,7 @@ class User implements UserInterface, \Serializable
         ));
     }
 
-    /** @seeSerializablee::unserialize() */
+    /** @see \Serializable::unserialize() */
     public function unserialize($serialized)
     {
         list (
@@ -327,7 +319,7 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
-    public function setBirthdate(DateTime $birthdate) {
+    public function setBirthdate(\DateTime $birthdate) {
         $this->birthdate = $birthdate;
         return $this;
     }
