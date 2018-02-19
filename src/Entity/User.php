@@ -376,6 +376,10 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
-
+    public function setRoles($roles) {
+        $this->roles = $roles;
+        return $this;
+    }
+s
     
 }
