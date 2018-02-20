@@ -2,21 +2,25 @@
 
 namespace App\Validator\Constraints;
 
+use App\Service\Geocoder;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
 class AddressValidator extends ConstraintValidator
 {
-    const URL_GOOGLE = 'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyCyLL_wAkO_vMlDVj_AEXH9HUKJ7lVVNTY&address=';
+    private $geocoder;
+    
+    public function __construct(Geocoder $geocoder) {
+        $this->geocoder = $geocoder;
+    }
+    
     public function validate($value, Constraint $constraint)
     {
         /* @var $constraint Address */
-
-        $distJson = file_get_contents(self::URL_GOOGLE . urlencode($value));
         
-        $data = json_decode($distJson, TRUE);
+        $data = $this->geocoder->getAddressInfos($value);
         
-        if(empty($data['status'])  ||  $data['status'] !== 'OK') {
+        if( ! $data) {
             $this->context->buildViolation($constraint->message)
                 ->setParameter('{{ value }}', $value)
                 ->addViolation();
