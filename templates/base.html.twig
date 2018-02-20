@@ -1,13 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        
+        {% block meta %}{% endblock %}
+        
+        <title>{% block title %}GlobeTribers{% endblock %}</title>
+        
         {% block stylesheets %}{% endblock %}
         
     </head>
     <body>
+        
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        
+        
+        <footer>
+        
+        
+        
+        </footer>
+    
+        {% block scripts %}{% endblock %}    
+        
     </body>
+
 </html>
