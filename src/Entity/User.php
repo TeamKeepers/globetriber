@@ -127,7 +127,7 @@ class User implements UserInterface, \Serializable
     /**
      *
      * @ORM\OneToMany(targetEntity="Place", mappedBy="user")
-     * @var Collection
+     * @var  Collection
      * 
      */
     private $createdPlaces;
@@ -149,19 +149,19 @@ class User implements UserInterface, \Serializable
     private $recommendations;
 
     /**
-     * Many Users have Many Users.
-     * @ManyToMany(targetEntity="User", mappedBy="myFriends")
+     * @var int|null
+     * @ORM\OneToMany(targetEntity="Tribe", mappedBy="idSender")
+     * @var Collection
+     */
+    private $myFriends;
+    
+    
+    /**
+     * @var int|null
+     * @ORM\OneToMany(targetEntity="Tribe", mappedBy="idReceiver")
      * @var Collection
      */
     private $friendsWithMe;
-
-    /**
-     * Many Users have many Users.
-     * @ManyToMany(targetEntity="User", inversedBy="friendsWithMe")
-     * @var Collection
-     * 
-     */
-    private $myFriends;
 
     /**
      * Many Users have Many Tchat .
@@ -372,7 +372,5 @@ class User implements UserInterface, \Serializable
         $this->roles = $roles;
         return $this;
     }
-
-
 
 }

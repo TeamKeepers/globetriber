@@ -8,7 +8,7 @@
 
 namespace App\Repository;
 
-use App\Entity\Product\Place;
+use App\Entity\Place;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 

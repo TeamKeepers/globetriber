@@ -26,7 +26,7 @@ class Media {
 
     /**
      * 
-     * @var Collection
+     * @var Place
      * @ORM\ManyToOne(targetEntity="Place", inversedBy="medias")
      */
     private $place;
@@ -51,10 +51,16 @@ class Media {
     function getId() {
         return $this->id;
     }
-
-    function getPlace() {
+    public function getPlace(): Place {
         return $this->place;
     }
+
+    public function setPlace(Place $place) {
+        $this->place = $place;
+        return $this;
+    }
+
+     
 
     function getPhoto() {
         return $this->photo;
@@ -68,11 +74,7 @@ class Media {
         $this->id = $id;
     }
 
-    function setPlace($place) {
-        $this->place = $place;
-    }
-
-    function setPhoto($photo) {
+      function setPhoto($photo) {
         $this->photo = $photo;
     }
 
