@@ -1,0 +1,11 @@
+/* ***** REGLES GENERALES ***** */
+
+/* ***** HEADER ***** */
+#logo {
+    width: 15%;
+}
+
+nav li a {
+    font-size: 1.2em;
+    min-height: 70px;
+}

@@ -1,28 +1,104 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
 
-
-
-    <title>{% block title %}GlobeTribers{% endblock %}</title>
-
+    <head>
+        
+        {% include 'meta.html.twig' %}
+        
+        <title>{% block title %}GlobeTribers{% endblock %}</title>
+        
+        {% include 'stylesheets.html.twig' %}
+        
+    </head>
+    <body>
+        
+        <header>
+            
+            <span>
+                <img id="logo" src="{{ asset('img/logoGT_v1.png') }}" alt="GlobeTribers">
+            </span>
+            
+            <nav>
+                <ul class="nav nav-justified fixed-bottom">
+                    {% if is_granted('ROLE_USER') %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Profil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Messagerie</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Accueil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="#">Paramètres</a>
+                        </li> 
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li class="nav-item">
+                                <a class="nav-link disabled" href="#">Backoffice</a>
+                            </li> 
+                        {% endif %}
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="" data-toggle="modal" data-target="#storytelling">Les coulisses</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="" data-toggle="modal" data-target="#register">Inscription</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="" data-toggle="modal" data-target="#login">Connexion</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+                
+            <div class="modal fade" id="storytelling" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div id="modal_storytelling" class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Les coulisses</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam convallis, elit in pellentesque iaculis, ante orci tincidunt purus, sodales tincidunt lectus odio vitae urna. Quisque egestas erat ex, ac vestibulum sapien posuere ut. Cras nec congue dui, id mollis quam. Morbi consectetur ex a urna cursus, vel viverra augue tempus. Duis vitae convallis neque. Nunc fermentum iaculis laoreet. Suspendisse tellus velit, commodo at augue et, sodales molestie augue. Duis quis suscipit augue. Donec vulputate a lectus sed fringilla. Proin in sodales leo. Nunc ligula purus, consequat ultrices tellus quis, elementum ultrices velit. Morbi pellentesque ultricies consectetur.</p>
+                            <div class="icons-storytelling">
+                                <a class="circle github" href="#">
+                                    <i class="fa fa-github fa-fw"></i>
+                                </a>
+                                <a id="google_login" class="circle google" href="#">
+                                    <i class="fa fa-google-plus fa-fw"></i>
+                                </a>
+                                <a id="facebook_login" class="circle facebook" href="#">
+                                    <i class="fa fa-facebook fa-fw"></i>
+                                </a>
+                            </div>
+                        </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </header>
+        
+        <main>
+            
+            {% block body %}{% endblock %} 
+            
+        </main>
+        
+        <footer>
+            
+            
+            
+        </footer>
     
+        {% include 'scripts.html.twig' %}
+        
+    </body>
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script type="text/javascript" src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script type="text/javascript" src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-</head>
-<body>
-
-    <main>
-        {% block body %}{% endblock %}
-    </main>
-    
-    
-    
-</body>
 </html>
