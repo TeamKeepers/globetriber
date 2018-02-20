@@ -27,15 +27,15 @@ class Recommendation
 
     /**
      * @var int|null
-     * @ORM\OneToMany(targetEntity="Place", mappedBy="recommendations")
-     * @var Collection
+     * @ORM\ManyToOne(targetEntity="Place", inversedBy="recommendations")
+     * @var Place
      */
     private $place;
 
     /**
      * @var int|null
      * @ORM\ManyToOne(targetEntity="User", inversedBy="recommendations")
-     * @var Collection
+     * @var User
      */
     private $user;
 

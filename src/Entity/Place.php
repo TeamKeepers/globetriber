@@ -5,11 +5,12 @@ namespace App\Entity;
 use App\Entity\Booking;
 use App\Entity\Media;
 use App\Entity\Recommendation;
+use App\Repository\PlaceRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\User;
 use Doctrine\ORM\Mapping\Table;
 use Doctrine\ORM\Mapping\Index;
-use Symfony\Bridge\Doctrine\Tests\Fixtures\User;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Constraints\Collection;
 
@@ -68,20 +69,25 @@ class Place {
     
         /**
      * @var string
-     * @ORM\Column(name="internet", type="string", length=100, nullable=false)
+     * @ORM\Column(name="internet", type="string", length=100)
      * @Assert\Choice({"wifi", "ethernet", "fibre", "adsl"})
      */
     protected $internet;
 
     /**
-     * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(name="image", type="string", length=255, options={"default":"default"})
+     * @Assert\Image(
+     *     minWidth=200,
+     *     maxWidth=1300,
+     *     maxSize="2000k",
+     *     corruptedMessage="Veuillez fournir un document valide."
+     * )
      * 
      */
     protected $image;
 
     /**
-     * @ORM\Column(name="accessibility", type="boolean", nullable=false)
+     * @ORM\Column(name="accessibility", type="boolean")
      * @var bool
      */
     protected $accessibility;
@@ -89,27 +95,32 @@ class Place {
     /**
      * @var bool
      *
-     * @ORM\Column(name="kitchen", type="boolean", nullable=false)
+     * @ORM\Column(name="kitchen", type="boolean")
      */
     protected $kitchen;
 
     /**
-     * @ORM\Column(name="parking", type="boolean", )
+     * @ORM\Column(name="parking", type="boolean")
      * @var bool
      */
     protected $parking;
 
     /**
      * @Assert\Length(min=5, max= 255)
-     * @ORM\Column(name="address", type="string", length=255, nullable=false)
+     * @ORM\Column(name="address", type="string", length=255)
      * @var string
      */
     protected $address;
 
     /**
+     * 
+     */
+    private $postalCode;
+    
+    /**
      * @var string
-     * @Assert\Length(min=2, max= 100)
-     * @ORM\Column(name="town", type="string", length=100, nullable=false)
+     * 
+     * @ORM\Column(name="town", type="string", length=100, nullable=true)
      */
     protected $town;
 
@@ -130,14 +141,14 @@ class Place {
     /**
      * @var string
      * @Assert\Length(min=2, max= 100)
-     * @ORM\Column(name="country", type="string", length=100, nullable=false)
+     * @ORM\Column(name="country", type="string", length=100)
      */
     protected $country;
 
      /**
      * @var int
      *
-     * @ORM\Column(name="bed", type="integer", nullable=false)
+     * @ORM\Column(name="bed", type="integer")
      */
     private $bed;
 
@@ -145,113 +156,112 @@ class Place {
     /**
      * @var bool
      * 
-     * @ORM\Column(name="desk", type="boolean", nullable=false)
+     * @ORM\Column(name="desk", type="boolean")
      */
     private $desk;
 
     /**
      * @var bool
      *
-     * @ORM\Column(name="airConditioning", type="boolean", nullable=false)
+     * @ORM\Column(name="airConditioning", type="boolean")
      */
     private $airConditioning;
 
     /**
      * @var bool
      *
-     * @ORM\Column(name="washingMachine", type="boolean", nullable=false)
+     * @ORM\Column(name="washingMachine", type="boolean")
      */
     private $washingMachine;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="outlet", type="string", length=255, nullable=false)
+     * @ORM\Column(name="outlet", type="string", length=255)
      */
     private $outlet;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="other", type="string", length=255, nullable=false)
+     * @ORM\Column(name="other", type="string", length=255, nullable=true)
      */
     private $other;
     
     /**
-     * @ORM\Column(name="capacity", type="integer", nullable=false)
+     * @ORM\Column(name="capacity", type="integer",  nullable=true)
      * @var int
      */
     private $capacity;
 
     /**
-     * @ORM\Column(name="privateDesk", type="boolean", nullable=false)
+     * @ORM\Column(name="privateDesk", type="boolean")
      * @var bool 
      */
     private $privateDesk;
 
     /**
-     * @ORM\Column(name="computer", type="boolean", nullable=false)
+     * @ORM\Column(name="computer", type="boolean")
      * @var bool
      */
     private $computer;
 
     /**
-     * @ORM\Column(name="printer", type="boolean", nullable=false)
+     * @ORM\Column(name="printer", type="boolean")
      * @var bool 
      */
     private $printer;
 
     /**
-     * @ORM\Column(name="scanner", type="boolean", nullable=false)
+     * @ORM\Column(name="scanner", type="boolean")
      * @var bool 
      */
     private $scanner;
 
     /**
-     * @ORM\Column(name="projector", type="boolean", nullable=false)
+     * @ORM\Column(name="projector", type="boolean")
      * @var bool 
      */
     private $projector;
 
     /**
-     * @ORM\Column(name="napStation", type="boolean", nullable=false)
+     * @ORM\Column(name="napStation", type="boolean")
      * @var bool 
      */
     private $napStation;
 
     /**
-     * @ORM\Column(name="whiteBoard", type="boolean", nullable=false)
+     * @ORM\Column(name="whiteBoard", type="boolean")
      * @var bool 
      */
     private $whiteBoard;
 
     /**
-     * @ORM\Column(name="terrace", type="boolean", nullable=false)
+     * @ORM\Column(name="terrace", type="boolean")
      * @var bool 
      */
     private $terrace;
 
     /**
-     * @ORM\Column(name="freeDrink", type="boolean", nullable=false)
+     * @ORM\Column(name="freeDrink", type="boolean")
      * @var bool 
      */
     private $freeDrink;
 
     /**
-     * @ORM\Column(name="freeSnack", type="boolean", nullable=false)
+     * @ORM\Column(name="freeSnack", type="boolean")
      * @var bool 
      */
     private $freeSnack;
     
     /**
-     * @var user
-     * @var Collection
+     * @var User
      * @ORM\ManyToOne(targetEntity="User", inversedBy="createdPlaces")
      */
     private $user;
 
     /**
-     * @var Collection
+     * var User
      * @ORM\ManyToOne(targetEntity="User", inversedBy="ownedPlace")
      */
     private $owner;
@@ -273,7 +283,7 @@ class Place {
     /**
      *  
      * @var Collection
-     * @ORM\ManyToOne(targetEntity="Recommendation", inversedBy="place")
+     * @ORM\OneToMany(targetEntity="Recommendation", mappedBy="place")
      */
     private $recommendations;
     
@@ -284,15 +294,22 @@ class Place {
     private $types;
     
     public function __construct(){
-        $this->user = new ArrayCollection();
-        $this->owner = new ArrayCollection();
         $this->bookings = new ArrayCollection();
         $this->medias = new ArrayCollection();
         $this->recommendations = new ArrayCollection();
      
     }
     
-    public function getId() {
+    public function getPostalCode() {
+        return $this->postalCode;
+    }
+
+    public function setPostalCode($postalCode) {
+        $this->postalCode = $postalCode;
+        return $this;
+    }
+
+        public function getId() {
         return $this->id;
     }
 
@@ -412,11 +429,11 @@ class Place {
         return $this->freeSnack;
     }
 
-    public function getUser(): user {
+    public function getUser(): User {
         return $this->user;
     }
 
-    public function getOwner(): Collection {
+    public function getOwner(): User {
         return $this->owner;
     }
 
@@ -586,12 +603,12 @@ class Place {
         return $this;
     }
 
-    public function setUser(user $user) {
+    public function setUser(User $user) {
         $this->user = $user;
         return $this;
     }
 
-    public function setOwner(Collection $owner) {
+    public function setOwner( User $owner) {
         $this->owner = $owner;
         return $this;
     }
@@ -615,6 +632,8 @@ class Place {
         $this->types = $types;
         return $this;
     }
+    
+    
 
 
 }

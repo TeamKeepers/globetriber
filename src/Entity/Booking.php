@@ -26,7 +26,7 @@ class Booking
     private $id;
 
     /**
-     * @var Collection
+     * @var Place
      * @ORM\ManyToOne(targetEntity="Place", inversedBy="bookings")
      * 
      */
@@ -61,7 +61,7 @@ class Booking
         return $this->id;
     }
 
-        public function getPlace(): Collection {
+        public function getPlace(): Place {
         return $this->place;
     }
 
@@ -82,7 +82,7 @@ class Booking
         $this->id = $id;
     }
 
-    public function setPlace(Collection $place) {
+    public function setPlace(Place $place) {
         $this->place = $place;
         return $this;
     }
