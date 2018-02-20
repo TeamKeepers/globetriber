@@ -1,0 +1,12 @@
+{% extends "base.html.twig" %}
+
+{% block title %} Bienvenue, {{ user.firstname }} {% endblock %}
+
+
+{% block body %}
+    
+{# app. permet d'accéder au user connecté #}
+    <h1> Présentation: </h1>
+    {{ app.user.description }}
+    
+{% endblock %}
