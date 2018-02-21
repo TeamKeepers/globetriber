@@ -9,8 +9,9 @@
 namespace App\Controller;
 
 use App\Form\SearchType;
-use App\Entity\Place;
+use App\Repository\PlaceRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -22,23 +23,24 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class MapController extends Controller{
     
-    /**
-     * @Route("/map")
+  /**
+       * @Route("/map",)  
      */
-  
-    public function searchPlace(Request $request ) {
-                 
-        $em = $this->getDoctrine()->getManager();
-        $form = $this->createForm(SearchType::class);
+    public function searchPlace(Request $request, PlaceRepository $PlaceRepo) {
+        
+       $em = $this->getDoctrine()->getManager();
+       $form = $this->createForm(SearchType::class);
        
-        $form->handleRequest($request);
+       $form->handleRequest($request);
        
          if ($form->isSubmitted() && $form->isValid()) {
              
-             $PlaceRepo = $em->getRepository($PlaceRepo)->findUserQuery();   
- 
-             return $this->redirectToRoute('/map');
-         } 
+            $results = $placeRepo->findUserQuery($form->getData());
+             
+             // pas de redirection à mon avis. tu souhaites peut-être plutôt renvoyer tes résultats en Json ou dans un template twig
+            // $this->render('search.html.twig' ,[ 'results' => $results ])
+            // $this->json($results);
+         }
     
          return $this->render('map.html.twig', [
              'form' => $form->createView()
