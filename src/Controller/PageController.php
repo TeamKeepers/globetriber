@@ -10,18 +10,18 @@ class PageController extends Controller
 {
     /**
      * 
-     * @Route("/")
-     * @Route("/home")
+     * @Route("/", name="home")
+     * @Route("/home", name="home")
      * 
      */
-    public function home() 
+    public function home()
     {
         return $this->render('home.html.twig');
     }
     
     /**
      * 
-     * @Route("/profile")
+     * @Route("/profile", name="profile")
      * 
      */
     public function profile()
