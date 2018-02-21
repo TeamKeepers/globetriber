@@ -3,15 +3,32 @@
 {% block title %} Liste des utilisateurs {% endblock %}
 
 {% block body %}
-    <h1>Détails de l'utilisateur {#{{ user.firstname }} {{ user.lastname }}#} </h1>
-    
-    <h2>Liste des lieux (par exemple)</h2>
+    <h1>Détails de l'utilisateur {{ user.firstname }} {{ user.lastname }} </h1>
     {# Définir ce que l'on veut afficher dans les détails du user #}
     
     <ul>
-        {% for %}
-        {# Ajouter ici les appels que l'on veut #}
-        {% endfor %}
+            <img src="{{ asset('uploads/avatar/' ~ app.user.avatar )}}" alt="User Image">>#}
+            <li>
+                <p> Pseudo : {{ user.username }} </p>
+            </li>
+            <li> 
+                <p> Prénom : {{ user.firstname }} </p>
+            </li>
+            <li> 
+                <p> Nom : {{ user.lastname }} </p>
+            </li>
+            <li> 
+                <p> email : {{ user.email }} </p>
+            </li>
+            <li> 
+                <p> Date de naissance : {{ user.birthdate|date("m/d/Y") }} </p>
+            </li>
+            <li> 
+                {#<p> Rôle du user : {{ user.~roles~ }} </p>#}
+            </li>
+            <li> 
+                <p>{{ user.activity_status }}</p> 
+            </li>
     </ul>
         <a href="{{ path('list_user') }}">Retour à la liste des users</a>
     
