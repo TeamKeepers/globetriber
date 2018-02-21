@@ -8,8 +8,12 @@
 
 namespace App\Controller;
 
+use App\Form\SearchType;
+use App\Entity\Place;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+
 
 /**
  * Description of MapController
@@ -21,9 +25,26 @@ class MapController extends Controller{
     /**
      * @Route("/map")
      */
+  
+    public function searchPlace(Request $request ) {
+                 
+        $em = $this->getDoctrine()->getManager();
+        $form = $this->createForm(SearchType::class);
+       
+        $form->handleRequest($request);
+       
+         if ($form->isSubmitted() && $form->isValid()) {
+             
+             $PlaceRepo = $em->getRepository($PlaceRepo)->findUserQuery();   
+ 
+             return $this->redirectToRoute('/map');
+         } 
     
-    public function map(){
-        return $this->render('map.html.twig');
+         return $this->render('map.html.twig', [
+             'form' => $form->createView()
+                 
+             ]);
+         
     }
     
     
