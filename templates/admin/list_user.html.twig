@@ -1,0 +1,16 @@
+{% extends 'admin/baseadmin.html.twig' %}
+
+{% block title %} Liste des utilisateurs {% endblock %}
+
+{% block body %}
+
+<ul>
+    {% for user in users %}
+        <li>
+            {{ user.firstname }} {{ user.lastname }}
+            <a href="{{ path('user_details', {id : user.id}) }}">Détails</a>
+        </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
