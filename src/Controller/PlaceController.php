@@ -38,25 +38,25 @@ class PlaceController extends Controller {
             // get address infos
 
             $infos = $geocoder->getAddressInfos($place->getAddress());
-   
+
             $lat = $infos['lat'];
             $place->setLat($lat);
-            
+
             $lng = $infos['lng'];
             $place->setLng($lng);
-            
+
             $town = $infos['town'];
             $place->setTown($town);
-            
+
             $town = $infos['town'];
             $place->setTown($town);
-            
+
             $postalCode = $infos['postal_code'];
             $place->setPostalCode($postalCode);
-            
+
             $place->setTypes(implode('|', $place->getTypes()));
-            
-         
+
+
             // Enregistrement du produit
 
             $manager->persist($place);
@@ -66,8 +66,13 @@ class PlaceController extends Controller {
         }
 
         return $this->render(
-                        'add_place.html.twig', array('form' => $form->createView())
+                        'add_place.html.twig', array(
+                            'form' => $form->createView())
         );
     }
 
+    
+
 }
+
+

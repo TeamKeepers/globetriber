@@ -9,3 +9,8 @@ nav li a {
     font-size: 1.2em;
     min-height: 70px;
 }
+
+#map {
+        height: 500px;
+        width: 100%;
+}
