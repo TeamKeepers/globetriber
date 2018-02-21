@@ -7,7 +7,7 @@
     {# Définir ce que l'on veut afficher dans les détails du user #}
     
     <ul>
-            <img src="{{ asset('uploads/avatar/' ~ app.user.avatar )}}" alt="User Image">>#}
+            <img src="{{ asset('uploads/photos_profile/' ~ app.user.photoProfile )}}" alt="User Image">
             <li>
                 <p> Pseudo : {{ user.username }} </p>
             </li>
@@ -27,7 +27,7 @@
                 {#<p> Rôle du user : {{ user.~roles~ }} </p>#}
             </li>
             <li> 
-                <p>{{ user.activity_status }}</p> 
+                {#<p>{{ user.activity_status }}</p> #}
             </li>
     </ul>
         <a href="{{ path('list_user') }}">Retour à la liste des users</a>
