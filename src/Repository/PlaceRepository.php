@@ -23,4 +23,32 @@ class PlaceRepository extends ServiceEntityRepository
         
         parent::__construct($registry, Place::class);
     }
+    
+    public function findUserQuery($address = null){
+        $qb = $this->createQueryBuilder("p");
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $qb
+                ->select('p.title, p.description, p.types.p.bed')
+                ->from('\Entity\Place','p')
+                ->where('p.types = :types')
+                ->where('\Symfony\Component\Form\Extension\Core\Type\CheckboxType::class == true')
+                // where 
+                //    $qb->expr()andX('\Symfony\Component\Form\Extension\Core\Type\CheckboxType::class == true')
+                ->setMaxResults(10)
+                ->setFirstResult(0)
+            ;
+        if($address !=null){
+            $qb
+                    ->andWhere('p.address = :address')
+                    ->setParameter('address', $address)
+                ;
+        }
+        
+        $result = $qb->getQuery()->getResult();
+        return $result;
+        
+            
+    }
+    
+    
 }
