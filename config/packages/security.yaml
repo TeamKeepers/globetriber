@@ -3,7 +3,7 @@ security:
         App\Entity\User: bcrypt
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        in_memory: { memory: ~ }
+        in_memory: {memory: ~ }
         our_db_provider:
             entity:
                 class: App\Entity\User
@@ -17,9 +17,10 @@ security:
             form_login:
                 login_path: login
                 check_path: login
-                default_target_path: home.html.twig
-                always_use_default_target_path: true
             provider: our_db_provider
+            logout:
+                path:   /logout
+                target: /
 
             # activate different ways to authenticate
 
