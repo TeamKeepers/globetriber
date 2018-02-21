@@ -11,7 +11,7 @@ class PageController extends Controller
     /**
      * 
      * @Route("/", name="home")
-     * @Route("/home", name="home")
+     * @Route("/home")
      * 
      */
     public function home()

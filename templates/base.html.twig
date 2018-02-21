@@ -14,32 +14,48 @@
         
         <header>
             
-            <span>
-                <a href="{{ path('home') }}">
-                    <img id="logo" src="{{ asset('img/logoGT_v1.png') }}" alt="GlobeTribers">
-                </a>
-            </span>
-            
+            <div id="header-row" class="row">
+                <span class="col-4 col-md-3">
+                    <a href="{{ path('home') }}">
+                        <img id="logo" src="{{ asset('img/logoGT_v1.png') }}" alt="GlobeTribers">
+                    </a>
+                </span>
+
+                <span id="header-element" class="col-6 offset-1 col-md-8">
+                    <form class="form-inline">
+                        <div class="input-group align-middle col-md-9">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">@</span>
+                                </div>
+                            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
+                    </form>
+                </span>
+            </div>
+                
             <nav>
                 <ul class="nav nav-justified fixed-bottom">
-                    {% if is_granted('ROLE_USER') %}
+                    {% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Profil</a>
+                            <a class="nav-link" href="{{ path('profile') }}">Profil</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Messagerie</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/">Accueil</a>
+                            <a class="nav-link" href="{{ path('home') }}">Accueil</a>
                         </li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Backoffice</a>
+                            </li> 
+                        {% endif %}
                         <li class="nav-item">
                             <a class="nav-link disabled" href="#">Paramètres</a>
                         </li> 
-                        {% if is_granted('ROLE_ADMIN') %}
-                            <li class="nav-item">
-                                <a class="nav-link disabled" href="#">Backoffice</a>
-                            </li> 
-                        {% endif %}
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="/logout">Déconnecter</a>
+                        </li> 
                     {% else %}
                         <li class="nav-item">
                             <a class="nav-link" href="" data-toggle="modal" data-target="#storytelling">Les coulisses</a>
@@ -51,6 +67,8 @@
                             <a class="nav-link" href="{{ path('login') }}">Connexion</a>
                         </li>
                     {% endif %}
+                    
+                    
                 </ul>
             </nav>
             
