@@ -1,7 +1,11 @@
-{# templates/register.html.twig #}
+{% extends "base.html.twig" %}
 
 {% use "bootstrap_4_layout.html.twig" %}
 
+{% block body %}
+    
 {{ form_start(form) }}
     {{ form_row(form) }}
 {{ form_end(form) }}
+
+{% endblock %} 
