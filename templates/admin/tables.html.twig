@@ -1,0 +1,80 @@
+{% extends 'admin/baseadmin.html.twig' %}
+
+{% block title %} Liste des tables BDD {% endblock %}
+
+{% block body %}
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card strpied-tabled-with-hover">
+                    <div class="card-header ">
+                        <h4 class="card-title">Striped Table with Hover</h4>
+                        <p class="card-category">Here is a subtitle for this table</p>
+                    </div>
+                    <div class="card-body table-full-width table-responsive">
+                        <table class="table table-hover table-striped">
+                            <thead>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Salary</th>
+                            <th>Country</th>
+                            <th>City</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    {% for table in globetriber %}
+                                        <td>{{ table.name }}</td> 
+                                        <td>{{ user.firstname }} {{ user.lastname }}</td> 
+                                        <td>{{ user.username }}</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><a href="{{ path('user_details', {id : user.id}) }}">Détails</a></td>
+                                    {% endfor %} 
+                               </tr>
+                            </tbody>
+                        </table>
+                    </div> 
+               </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="footer">
+    <div class="container">
+        <nav>
+            <ul class="footer-menu">
+                <li>
+                    <a href="#">
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        Company
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        Portfolio
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        Blog
+                    </a>
+                </li>
+            </ul>
+            <p class="copyright text-center">
+                ©
+                <script>
+                    document.write(new Date().getFullYear())
+                </script>
+                <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
+            </p>
+        </nav>
+    </div>
+</footer>
+</div>
+</div>
+{% endblock %}

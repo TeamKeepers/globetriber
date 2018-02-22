@@ -1,7 +1,9 @@
 <?php
 namespace App\Controller\Admin;
 
+use App\Entity\Recommendation;
 use App\Entity\User;
+use App\Repository\RecommendationRepository;
 use App\Repository\UserRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -40,5 +42,17 @@ class AdminController extends Controller
            'user'=> $user
        ]);
    }
+   
+   /**
+     * @Route("/admin/comments", name="comments")
+     */
+    public function getCommentsByUser(User $user, RecommendationRepository $recommendationRepo)
+    {
+        $recommendations = $recommendationRepo->findCommentByUser($user);
+        return $this->render('admin/comments.html.twig', [
+            'user' => $user,
+            'recommendation' => $recommendations
+        ]);
+    }
     
 }
