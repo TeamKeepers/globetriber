@@ -32,7 +32,7 @@ class PlaceType extends AbstractType {
                 
                 ->add('country', CountryType::class, [
                     'label' => 'Pays',
-                    'required' => true
+                    'required' => false
                 ])
                 ->add('image', FileType::class, [
                     'label' => 'Photo du lieu'
@@ -43,7 +43,8 @@ class PlaceType extends AbstractType {
                         'ethernet' => 'ethernet',
                         'fibre' => 'fibre',
                         'adsl' => 'adsl',
-                    ]
+                    ],
+                    'required' => false
                 ])
                 ->add('accessibility', CheckboxType::class, [
                     'label' => 'Accéssibilité',
@@ -61,6 +62,7 @@ class PlaceType extends AbstractType {
                 // ----------------Sleep type choice
                 ->add('bed', ChoiceType::class, [
                     'choices' => [
+                        '0' => '0',
                         '1' => '1',
                         '2' => '2',
                         '3' => '3',

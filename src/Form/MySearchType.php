@@ -14,20 +14,18 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  *
  * @author Laeti
  */
-class SearchType extends PlaceType {
+class MySearchType extends PlaceType {
     
-    public function getExtendedType(){
-        return PlaceType::class;
-    }
 
     public function buildForm(FormBuilderInterface $builder, array $choices) {
       
-         parent::buildForm($builder, $choices);
+        parent::buildForm($builder, $choices);
         $builder
                 ->add('town', TextType::class, [
                     'label' => 'Ville',
+                    'required' => false
                 ])
-                ->add('Search', SubmitType::class);
+                ->add('Rechercher', SubmitType::class);
         
         $builder->remove('title');
         $builder->remove('address');
@@ -39,9 +37,9 @@ class SearchType extends PlaceType {
     }
 
     public function configureOptions(OptionsResolver $resolver) {
-        $resolver->setDefaults([
-            'data_class' => Place::class,
-        ]);
+//        $resolver->setDefaults([
+//            'data_class' => Place::class,
+//        ]);
     }
 
 }

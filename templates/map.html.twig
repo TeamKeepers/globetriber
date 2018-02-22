@@ -13,6 +13,17 @@
     <h2>Affichage Maps</h2>
     
     <div id="map"></div>
+    <h3>Bienvenue sur la liste des produits</h3>
+
+    {# generate place results #}
+    <ul>
+        {% for result in results %}
+            <li>
+                {{ result.title }} {{ result.description }}
+                   
+            </li>
+        {% endfor %}
+    </ul>
     
     <script>
         function initMap(){
