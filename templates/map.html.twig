@@ -1,0 +1,46 @@
+{% extends "base.html.twig" %}
+
+{% use "bootstrap_4_layout.html.twig" %}
+
+{% block title %} Recherche d'un lieu {% endblock%}
+
+{% block body %}
+ 
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+    {{ form_end(form) }}
+
+    <h2>Affichage Maps</h2>
+    
+    <div id="map"></div>
+    <h3>Bienvenue sur la liste des produits</h3>
+
+    {# generate place results #}
+    <ul>
+        {% for result in results %}
+            <li>
+                {{ result.title }} {{ result.description }}
+                   
+            </li>
+        {% endfor %}
+    </ul>
+    
+    <script>
+        function initMap(){
+            var options = {
+                zoom : 13,
+                center:{lat: 48.8566, lng:2.3522}
+            }
+            
+            var map = new google.maps.Map(document.getElementById('map'), options);
+        }
+    </script>
+    
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyLL_wAkO_vMlDVj_AEXH9HUKJ7lVVNTY&callback=initMap">
+    </script> 
+    
+{% endblock%}
+
+
+

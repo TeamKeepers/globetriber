@@ -1,0 +1,82 @@
+{% extends "base.html.twig" %}
+
+{% block title %} Bienvenue, {{ user.firstname }} {% endblock %}
+
+
+{% block body %}
+    
+<!-- DEBUT CONTENU PAGE PROFILE -->
+        
+	<!-- Début intro page profil photo cover + photo profil -->
+    <div class="page-header page-header-small" filter-color="orange">
+    	<div class="page-header-image" data-parallax="true" style="background-image: url('../assets/img/bg5.jpg') ;">
+	    </div>
+	    <div class="content-center">
+	        <div class="photo-container">
+	        	<!-- user.photoprofile -->
+	            <img src="../assets/img/ryan.jpg" alt=""> 
+	        </div>
+
+	        <!-- user.name -->
+	        <h3 class="title">Jean-Pierre MouduGlan</h3>
+	    </div>
+	</div>
+	<!-- Fin intro page profil  -->
+
+	<!-- Début Tabs -->
+	<div class="section">
+	    <div class="container">
+	        <div class="button-container">
+	        	<ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+					<li class="nav-item">
+						<a class="nav-link active" id="profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="true">Profile</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" id="modify-profile-tab" data-toggle="tab" href="#nav-modify-profile" role="tab" aria-controls="nav-modify-profile" aria-selected="false"><i class="fas fa-sliders-h fa-2x"></i></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" id="circle-tab" data-toggle="tab" href="#nav-circles" role="tab" aria-controls="nav-circles" aria-selected="false"><i class="fas fa-users fa-2x"></i></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" id="add-product-tab" data-toggle="tab" href="#nav-add-product" role="tab" aria-controls="nav-add-product" aria-selected="false"><i class="fas fa-thumbtack fa-2x"></i></a>
+					</li>
+				</ul>
+				<div class="tab-content" id="myTabContent">
+					<div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="profile-tab">
+						<h3 class="title">About me</h3>
+				        <!-- user.description -->
+				        <h5 class="description text-center">An artist of considerable range, Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music, giving it a warm, intimate feel with a solid groove structure. An artist of considerable range.</h5>
+				        <!-- GOOGLE MAP avec marqueurs du user -->
+				        <div class="row">
+				            <div class="col-md-12">
+				                <h4 class="title text-center">My Map</h4>
+				                <div class="nav-align-center">
+									<a href="https://placeholder.com"><img src="http://via.placeholder.com/1000x512"></a>
+								</div>
+				            </div>
+				        </div>
+					</div>
+					
+					<!-- Ajout de la page pour modifier les infos du user -->
+					<div class="tab-pane fade" id="nav-modify-profile" role="tabpanel" aria-labelledby="modify-profile-tab">
+						<p>Modify my profile!</p>
+					</div>
+					
+					<!-- Vérifier mes ajouts sur la google map -->
+					<div class="tab-pane fade" id="nav-circles" role="tabpanel" aria-labelledby="circle-tab">
+						<p>Check my circles!</p> 
+					</div>
+					
+					<!-- ajout du formulaire d'ajout de lieux -->
+					<div class="tab-pane fade" id="nav-add-product" role="tabpanel" aria-labelledby="add-product-tab">
+						<p>Add a product!</p> 
+					</div>
+				</div>
+	        </div>        
+	    </div>
+	</div>
+	<!-- Fin Tabs -->
+
+<!-- FIN CONTENU PAGE PROFILE -->
+    
+{% endblock %}
