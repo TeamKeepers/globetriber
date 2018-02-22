@@ -7,8 +7,9 @@ use App\Entity\User;
 use App\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class RegistrationController extends Controller
@@ -49,8 +50,13 @@ class RegistrationController extends Controller
 
             // ... do any other work - like sending them an email, etc
             // maybe set a "flash" success message for the user
+            
+            // Connect automatically after the registration
+            $token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
+            $this->get('security.token_storage')->setToken($token);
+            $this->get('session')->set('_security_main', serialize($token));
 
-            return $this->redirectToRoute('home.html.twig');
+            return $this->redirectToRoute('home');
         }
 
         return $this->render(

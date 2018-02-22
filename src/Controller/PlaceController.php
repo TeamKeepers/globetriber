@@ -62,7 +62,7 @@ class PlaceController extends Controller {
             $manager->persist($place);
             $manager->flush();
 
-            return $this->redirectToRoute('product');
+            return $this->redirectToRoute('profile');
         }
 
         return $this->render(

@@ -53,7 +53,7 @@ class UserType extends AbstractType
             ->add('termsAccepted', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => new IsTrue(),
-                'label' => 'J\'accepte les termes de Globetribers' 
+                'label' => 'J\'accepte les termes de Globetribers'
             ])
             ->add('Envoyer', SubmitType::class)
         ;
