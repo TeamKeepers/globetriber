@@ -16,7 +16,9 @@ class PageController extends Controller
      */
     public function home()
     {
-        return $this->render('home.html.twig');
+        /* Pour envoyer la création du form en modal */
+        /* $form = $this->createForm(UserType::class, $user); */
+        return $this->render('home.html.twig'); /* +, $form */
     }
     
     /**

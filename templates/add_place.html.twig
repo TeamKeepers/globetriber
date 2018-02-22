@@ -7,8 +7,13 @@
 
 {% block body %}
     
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-    {{ form_end(form) }}
+    <fieldset>
+        <legend>Ajouter un lieu</legend>
+    
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+        {{ form_end(form) }}
+    
+    </fieldset>
     
 {% endblock %}
