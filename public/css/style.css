@@ -1,0 +1,35 @@
+/* ***** GENERAL RULES ***** */
+
+/*
+@include media-breakpoint-up(xs) { ... }
+@include media-breakpoint-up(sm) { ... }
+@include media-breakpoint-up(md) { ... }
+@include media-breakpoint-up(lg) { ... }
+@include media-breakpoint-up(xl) { ... }
+*/
+
+/* allow to see bottom of pages despite of the bottom nav */
+main {
+    margin-bottom: 80px;
+}
+
+/* ***** HEADER ***** */
+
+nav li a {
+    font-size: 1.2em;
+    min-height: 70px;
+}
+
+#header-row {
+    padding: 10px 0;
+    background-image: url("../img/head-home.jpg");
+    background-position: center bottom;
+    background-size: 100%;
+}
+
+/* ***** MAP ***** */
+#map {
+        height: 500px;
+        width: 100%;
+}
+
