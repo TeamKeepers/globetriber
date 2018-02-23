@@ -1,8 +1,9 @@
 <?php
 namespace App\Controller\Admin;
 
-use App\Entity\Recommendation;
+use App\Entity\Place;
 use App\Entity\User;
+use App\Repository\PlaceRepository;
 use App\Repository\RecommendationRepository;
 use App\Repository\UserRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -44,15 +45,56 @@ class AdminController extends Controller
    }
    
    /**
-     * @Route("/admin/comments", name="comments")
-     */
-    public function getCommentsByUser(User $user, RecommendationRepository $recommendationRepo)
+    *
+    * @Route("/admin/comments", name="comments")
+    */
+    public function getCommentList(RecommendationRepository $recommendationRepo)
     {
-        $recommendations = $recommendationRepo->findCommentByUser($user);
+        $recommendation = $recommendationRepo->findAll();
         return $this->render('admin/comments.html.twig', [
-            'user' => $user,
-            'recommendation' => $recommendations
+            'recommendations' => $recommendation
         ]);
     }
+    
+        
+    /**
+     * 
+     * @Route("admin/places", name="places")
+     * 
+     */
+    public function getPlaceList(PlaceRepository $placeRepo)
+    {
+        $places = $placeRepo->findAll();
+        return $this->render('admin/places.html.twig', [
+            'places' => $places
+        ]);
+    }
+
+
+    /**
+     * 
+     * @Route("admin/place/{id}", name="place_details")
+     * 
+     */
+    public function PlaceDetails(Place $place)
+    {
+        return $this->render('admin/details_place.html.twig', [
+            'place' => $place
+        ]);
+    }
+   
+// A développer plus tard - afficher tous les commentaires ainsi que leurs auteur et le lieu concerné  
+//    /**
+//    *
+//    * @Route("/admin/comments", name="comments")
+//    */
+//    public function getCommentsByUser(User $user, UserRepository $userRepo, RecommendationRepository $recommendationRepo)
+//    {
+//        $recommendations = $recommendationRepo->findCommentByUser();
+//        return $this->render('admin/comments.html.twig', [
+//            'user' => $user,
+//            'recommendation' => $recommendations
+//        ]);
+//    }
     
 }

@@ -1,7 +1,7 @@
 {# admin/details_user #}
 {% extends 'admin/baseadmin.html.twig' %}
 
-{% block title %} Liste des utilisateurs {% endblock %}
+{% block title %} Détails de l'utilisateurs {% endblock %}
 
 {% block body %}
     <h1>Détails de l'utilisateur {{ user.firstname }} {{ user.lastname }} </h1>
@@ -18,19 +18,13 @@
                                 <div class="card-body">
                                     <form>
                                         <div class="row">
-                                            <!--<div class="col-md-5 pr-1">
-                                                <div class="form-group">
-                                                    <label>Company (disabled)</label>
-                                                    <input type="text" class="form-control" disabled="" placeholder="Company" value="Creative Code Inc.">
-                                                </div>
-                                            </div>-->
-                                            <div class="col-md-3 px-1">
+                                            <div class="col-md-6 px-1">
                                                 <div class="form-group">
                                                     <label>Pseudo</label>
                                                     <input type="text" class="form-control" placeholder="Pseudo" value="{{ user.username }}">
                                                 </div>
                                             </div>
-                                            <div class="col-md-4 pl-1">
+                                            <div class="col-md-6 pl-1">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Adresse E-mail</label>
                                                     <input type="email" class="form-control" placeholder="Adresse e-mail" value="{{ user.email }}">

@@ -23,16 +23,17 @@
                                 <th>Voir détail</th>
                             </thead>
                             <tbody>
+                                {% for user in users %}
                                 <tr>
-                                    {% for user in users %}
-                                        <td>{{ user.id }}</td> 
-                                        <td>{{ user.firstname }} {{ user.lastname }}</td> 
-                                        <td>{{ user.username }}</td>
-                                        <td>{{ user.activityStatus }}</td>
-                                        <td></td>
-                                        <td><a href="{{ path('user_details', {id : user.id}) }}">Détails</a></td>
-                                    {% endfor %}
+                                    <td>{{ user.id }}</td> 
+                                    <td>{{ user.firstname }} {{ user.lastname }}</td> 
+                                    <td>{{ user.username }}</td>
+                                    <td></td>
+                                    <td>{{ user.activityStatus }}</td>
+                                    <td></td>
+                                    <td><a href="{{ path('user_details', {id : user.id}) }}">Détails</a></td>
                                 </tr>
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>

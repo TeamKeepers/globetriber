@@ -5,19 +5,19 @@ namespace App\Entity;
 use App\Entity\Booking;
 use App\Entity\Media;
 use App\Entity\Recommendation;
+use App\Entity\User;
 use App\Repository\PlaceRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use App\Entity\User;
-use Doctrine\ORM\Mapping\Table;
 use Doctrine\ORM\Mapping\Index;
+use Doctrine\ORM\Mapping\Table;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Constraints\Collection;
 
 
 /**
  * Place
- * @ORM\Entity(repositoryClass="PlaceRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\PlaceRepository")
  * @Table(
  *      name="place",
  *      indexes={
