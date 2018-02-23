@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
 
 class PageController extends Controller
 {
@@ -26,9 +26,16 @@ class PageController extends Controller
      * @Route("/profile", name="profile")
      * 
      */
-    public function profile()
+    public function showMyProfile()
     {
         return $this->render('profile.html.twig');
+    }
+    
+    /**
+     * @Route("/profile/{id}", name="profile_list")
+     */
+    public function showProfile($id){
+        $profile = $this->getDoctrine()->getRepository(User::class)->find($id);
     }
     
 }

@@ -24,6 +24,8 @@ class UserRepository extends ServiceEntityRepository implements UserLoaderInterf
             ->getOneOrNullResult();
     }
     
+    
+    
     /*
     public function findBySomething($value)
     {

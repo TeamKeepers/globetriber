@@ -1,6 +1,6 @@
 {% extends "base.html.twig" %}
 
-{% block title %} Bienvenue, {{ user.firstname }} {% endblock %}
+{% block title %} Bienvenue, {{ app.user.username }} {% endblock %}
 
 
 {% block body %}
@@ -14,11 +14,11 @@
 	    <div class="content-center">
 	        <div class="photo-container">
 	        	<!-- user.photoprofile -->
-	            <img src="../assets/img/ryan.jpg" alt=""> 
+	            <img src="{{ asset('uploads/photos_profile/' ~ app.user.photoProfile )}}" alt=""> 
 	        </div>
 
 	        <!-- user.name -->
-	        <h3 class="title">Jean-Pierre MouduGlan</h3>
+	        <h3 class="title">{{ app.user.firstname }} {{ app.user.lastname }}</h3>
 	    </div>
 	</div>
 	<!-- Fin intro page profil  -->
@@ -45,7 +45,7 @@
 					<div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="profile-tab">
 						<h3 class="title">About me</h3>
 				        <!-- user.description -->
-				        <h5 class="description text-center">An artist of considerable range, Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music, giving it a warm, intimate feel with a solid groove structure. An artist of considerable range.</h5>
+				        <h5 class="description text-center">{{ app.user.description }}</h5>
 				        <!-- GOOGLE MAP avec marqueurs du user -->
 				        <div class="row">
 				            <div class="col-md-12">
