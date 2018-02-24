@@ -79,7 +79,6 @@ class Place {
      * @Assert\Image(
      *     minWidth=200,
      *     maxWidth=1300,
-     *     maxSize="2000k",
      *     corruptedMessage="Veuillez fournir un document valide."
      * )
      * 
@@ -262,7 +261,7 @@ class Place {
 
     /**
      * var User
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="ownedPlace")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="ownedPlaces")
      */
     private $owner;
 

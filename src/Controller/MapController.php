@@ -8,46 +8,48 @@
 
 namespace App\Controller;
 
-use App\Form\SearchType;
+use App\Form\MySearchType;
 use App\Repository\PlaceRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-
 
 /**
  * Description of MapController
  *
  * @author Laeti
  */
-class MapController extends Controller{
-    
-  /**
-       * @Route("/map",)  
+class MapController extends Controller {
+
+    /**
+     * @Route("/map",)  
      */
-    public function searchPlace(Request $request, PlaceRepository $PlaceRepo) {
-        
-       $em = $this->getDoctrine()->getManager();
-       $form = $this->createForm(SearchType::class);
+    public function searchPlace(Request $request, PlaceRepository $placeRepo) {
+
+        $form = $this->createForm(MySearchType::class);
+
+        $form->handleRequest($request);
+
+        $results = [];
        
-       $form->handleRequest($request);
-       
-         if ($form->isSubmitted() && $form->isValid()) {
-             
-            $results = $placeRepo->findUserQuery($form->getData());
-             
-             // pas de redirection à mon avis. tu souhaites peut-être plutôt renvoyer tes résultats en Json ou dans un template twig
-            // $this->render('search.html.twig' ,[ 'results' => $results ])
-            // $this->json($results);
-         }
-    
-         return $this->render('map.html.twig', [
-             'form' => $form->createView()
-                 
-             ]);
-         
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $results = $placeRepo->findByTypes($form->getData());
+            var_dump($results);
+
+
+            // pas de redirection à mon avis. tu souhaites peut-être plutôt renvoyer tes résultats en Json ou dans un template twig
+
+            $this->json($results);
+           
+        }
+
+        return $this->render('map.html.twig', [
+                    'form' => $form->createView(),
+                    'results' => $results,
+        ]);
+      
     }
-    
-    
+
 }

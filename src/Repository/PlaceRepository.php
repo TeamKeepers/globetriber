@@ -17,38 +17,47 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  *
  * @author Laeti
  */
-class PlaceRepository extends ServiceEntityRepository
-{
-    public function __construct(RegistryInterface $registry){
-        
+class PlaceRepository extends ServiceEntityRepository {
+
+    public function __construct(RegistryInterface $registry) {
+
         parent::__construct($registry, Place::class);
     }
-    
-    public function findUserQuery($address = null){
+
+    public function findByTypes($place) {
         $qb = $this->createQueryBuilder("p");
-        $qb = $this->getEntityManager()->createQueryBuilder();
         $qb
-                ->select('p.title, p.description, p.types.p.bed')
-                ->from('\Entity\Place','p')
-                ->where('p.types = :types')
-                ->where('\Symfony\Component\Form\Extension\Core\Type\CheckboxType::class == true')
-                // where 
-                //    $qb->expr()andX('\Symfony\Component\Form\Extension\Core\Type\CheckboxType::class == true')
+                ->select('p.title, p.description, p.lng, p.lat')
                 ->setMaxResults(10)
                 ->setFirstResult(0)
-            ;
-        if($address !=null){
-            $qb
-                    ->andWhere('p.address = :address')
-                    ->setParameter('address', $address)
-                ;
+        ;
+        if (!empty($place['types'])) {
+            $types = $place['types'];
+            $expr = $qb->expr()->orX();
+            $i = 0;
+            foreach ($types as $type) {
+                $expr->add($qb->expr()->like('p.types', ':type' . $i));
+                $qb->setParameter(':type' . $i, $type);
+                $i++;
+            }
+            $qb->orWhere($expr);
         }
+    
+        $criteria = ['accessibility', 'kitchen', 'desk', 'airConditioning', 'washingMachine', 'privateDesk', 'computer', 'parking', 'scanner', 'projector', 'printer', 'whiteBoard', 'napStation', 'terrace', 'freeDrink', 'freeSnack', 'internet', 'bed', 'town', 'country' ];
+
+        $i = 0;
+        foreach ($criteria as $criterium) {
+            if (!empty($place[$criterium])) {
+                $value = $place[$criterium];
+                $qb->orWhere('p.' . $criterium . ' = :criterium' . $i);
+                $qb->setParameter(':criterium' . $i, $value);
+                $i++;
+            }
+        }
+
         
-        $result = $qb->getQuery()->getResult();
-        return $result;
-        
-            
+        $results = $qb->getQuery()->getResult();
+        return $results;
     }
-    
-    
+
 }

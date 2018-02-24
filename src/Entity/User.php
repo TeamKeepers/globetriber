@@ -12,7 +12,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
-
 /**
  *
  * User
@@ -24,8 +23,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @UniqueEntity(fields="username", message="Pseudo déjà enregistré")
  * 
  */
-class User implements UserInterface, \Serializable
-{
+class User implements UserInterface, \Serializable {
 
     /**
      *
@@ -59,7 +57,7 @@ class User implements UserInterface, \Serializable
      * 
      */
     private $email;
-    
+
     /**
      *
      * @ORM\Column(type="string", length=255, unique=true)
@@ -67,7 +65,7 @@ class User implements UserInterface, \Serializable
      * 
      */
     private $username;
-    
+
     /**
      *
      * @Assert\NotBlank()
@@ -97,6 +95,13 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(name="description", type="text", length=2000)
      */
     private $description;
+
+    /**
+     * @var string
+     * 
+     * @ORM\Column(name="town", type="string", length=100, nullable=true)
+     */
+    protected $town;
 
     /**
      * @var bool
@@ -154,8 +159,7 @@ class User implements UserInterface, \Serializable
      * @var Collection
      */
     private $myFriends;
-    
-    
+
     /**
      * @var int|null
      * @ORM\OneToMany(targetEntity="Tribe", mappedBy="idReceiver")
@@ -176,46 +180,44 @@ class User implements UserInterface, \Serializable
         $this->myFriends = new ArrayCollection();
         $this->messages = new ArrayCollection();
     }
-    
+
     /** @see \Serializable::serialize() */
-    public function serialize()
-    {
+    public function serialize() {
         return serialize(array(
             $this->id,
             $this->username,
             $this->password,
-            // see section on salt below
-            // $this->salt,
+                // see section on salt below
+                // $this->salt,
         ));
     }
 
     /** @see \Serializable::unserialize() */
-    public function unserialize($serialized)
-    {
+    public function unserialize($serialized) {
         list (
-            $this->id,
-            $this->username,
-            $this->password,
-            // see section on salt below
-            // $this->salt
-        ) = unserialize($serialized);
+                $this->id,
+                $this->username,
+                $this->password,
+                // see section on salt below
+                // $this->salt
+                ) = unserialize($serialized);
     }
-    
-    public function getSalt()
-    {
+
+    public function getSalt() {
         // The bcrypt and argon2i algorithms don't require a separate salt.
         // You *may* need a real salt if you choose a different encoder.
         return null;
     }
-    public function getRoles()
-    {
+
+    public function getRoles() {
         // nos rôles seront stockés sous ce format: "ROLE_USER|ROLE_ADMIN"
         return explode('|', $this->roles);
     }
-    public function eraseCredentials()
-    {
+
+    public function eraseCredentials() {
+        
     }
-    
+
     public function getId() {
         return $this->id;
     }
@@ -246,6 +248,10 @@ class User implements UserInterface, \Serializable
 
     public function getBirthdate() {
         return $this->birthdate;
+    }
+
+    public function getTown() {
+        return $this->town;
     }
 
     public function getDescription() {
@@ -324,6 +330,11 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
+    public function setTown($town) {
+        $this->town = $town;
+        return $this;
+    }
+
     public function setDescription($description) {
         $this->description = $description;
         return $this;
@@ -368,6 +379,7 @@ class User implements UserInterface, \Serializable
         $this->messages = $messages;
         return $this;
     }
+
     public function setRoles($roles) {
         $this->roles = $roles;
         return $this;
