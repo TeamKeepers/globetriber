@@ -45,11 +45,8 @@ class PlaceController extends Controller {
             $lng = $infos['lng'];
             $place->setLng($lng);
 
-            $town = $infos['town'];
-            $place->setTown($town);
-
-            $town = $infos['town'];
-            $place->setTown($town);
+//            $town = $infos['town'];
+//            $place->setTown($town);
 
             $postalCode = $infos['postal_code'];
             $place->setPostalCode($postalCode);
