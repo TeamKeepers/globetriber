@@ -1,0 +1,114 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    
+<!-- Carousel -->
+<div id="carouselExampleIndicators" class="carousel slide">
+    <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+        <div class="carousel-item active">
+            <div class="page-header header-filter">
+                <div class="page-header-image" style="background-image: url('../assets/img/mainRoom4.jpg');"></div><!-- REVOIR LES CHEMINS! -->
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="page-header header-filter">
+                <div class="page-header-image" style="background-image: url('../assets/img/desk2.jpg');"></div><!-- REVOIR LES CHEMINS! -->
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="page-header header-filter">
+                <div class="page-header-image" style="background-image: url('../assets/img/room6.jpg');"></div><!-- REVOIR LES CHEMINS! -->
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="page-header header-filter">
+                <div class="page-header-image" style="background-image: url('../assets/img/kitchen4.jpg');"></div><!-- REVOIR LES CHEMINS! -->
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="page-header header-filter">
+                <div class="page-header-image" style="background-image: url('../assets/img/bathroom4.jpg');"></div><!-- REVOIR LES CHEMINS! -->
+            </div>
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <i class="fas fa-angle-left fa-3x"></i>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <i class="fas fa-angle-right fa-3x"></i>
+    </a>
+</div>
+<!-- End carousel -->
+
+<!-- Description -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2 text-center">
+            <h2 class="title">{{ place.title }}</h2>
+            <h4 class="description small text-justify">{{ place.description }}</h4>
+        </div>
+        <!-- Pouce en l'air / pouce en bas -->
+        <div class="col-md-2 like text-center">
+            <p>Note du lieu:</p>
+            <a href=""><i class="fas fa-check"></i></a>
+            <a href=""><i class="fas fa-times"></i></a>
+            <p>x% des gens conseillent ce lieu</p> <!-- A rendre dynamique -->
+        </div>
+        <!-- Fin Pouce en l'air / pouce en bas -->
+    </div>
+</div>
+<!-- End Description -->
+
+<!-- Amenities -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 ml-auto mr-auto text-center">
+            <h4 class="description">Équipement</h4>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">internet: {{ place.internet }}</li>
+                <li class="list-group-item">accessibility: {{ place.accessibility }}</li>
+                <li class="list-group-item">kitchen: {{ place.kitchen }}</li>
+                <li class="list-group-item">parking: {{ place.parking }}</li>
+                <li class="list-group-item">outlet: {{ place.outlet }}</li>
+                <li class="list-group-item">airConditioning: {{ place.airConditioning }}</li>
+                <li class="list-group-item">printer: {{ place.printer }}</li>
+                <li class="list-group-item">projector: {{ place.projector }}</li>
+                <li class="list-group-item">other: {{ place.other }}</li>
+
+                {% if place.types == 'sleep' %}
+                    <li class="list-group-item">bed: {{place.bed}}</li>
+
+                    <li class="list-group-item">washingMachine: {{place.washingMachine }}</li>
+                    <li class="list-group-item">desk: {{place.desk }}</li>
+                {% elseif place.types == 'work'%}
+                    <li class="list-group-item">capacity: {{place.capacity}}</li>
+                    <li class="list-group-item">privateDesk: {{place.privateDesk }}</li>
+                    <li class="list-group-item">computer: {{place.computer }}</li>
+                    <li class="list-group-item">napStation:{{place.napStation }}</li>
+                    <li class="list-group-item">whiteBoard: {{place.whiteBoard }}</li>
+                    <li class="list-group-item">terrace: {{place.terrace }}</li>
+                    <li class="list-group-item">freeDrink: {{place.freeDrink }}</li>
+                    <li class="list-group-item">freeSnack: {{place.freeSnack }}</li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- End Amenities -->
+
+<!-- Commentaires -->
+<div class="container comment col-md-7 ml-auto mr-autojumbotron rounded">
+    <h1 class="small display-4">Comment posted by user1234 on September 21 2018 at 18:34</h1> <!-- DYNAMISER !! -->
+    <hr class="my-4">
+    <p class="lead">J'ai passé un super moment chez machine !  Elle a été super accueillante et m'a offert pleins de cookies !</p><!-- DYNAMISER !! -->
+</div>
+<!-- End Commentaires -->
+
+{% endblock %}

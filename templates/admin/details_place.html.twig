@@ -4,7 +4,8 @@
 {% block title %} Détails du lieu {% endblock %}
 
 {% block body %}
-    <h1>Détails du lieu {{ place.id }} :</h1><h3> {{ place.title }} </h3> 
+    <h1>Détails du lieu {{ place.id }} :</h1>
+    <h3> {{ place.title }} </h3> 
     {# Définir ce que l'on veut afficher dans les détails du lieu #}
     
     <div class="content">
@@ -186,6 +187,12 @@
                                                 <div class="form-group">
                                                     <label>Nourriture gratuite</label>
                                                     <input type="text" class="form-control" value="{{ place.freeSnack }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 px-1">
+                                                <div class="form-group">
+                                                    <label>Boissons gratuites</label>
+                                                    <input type="text" class="form-control" value="{{ place.freeDrink }}">
                                                 </div>
                                             </div>
                                         </div>

@@ -71,7 +71,7 @@ class PlaceController extends Controller {
         );
     }
 
-    
+
 
 }
 
