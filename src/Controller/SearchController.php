@@ -23,18 +23,21 @@ class SearchController extends Controller
        $form->handleRequest($request);
        
        $results = [];
-         if ($form->isSubmitted() && $form->isValid()) {
+       
+        if ($form->isSubmitted() && $form->isValid()) {
            
-            $results = $searchRepo->findByPax($form->getData());
-            $results = $searchRepo->findByPlace($form->getData());
+            $datas = $form->getData();
+            
+            foreach ($datas as $data) {
+               $results = $searchRepo->findByPax($data); 
+            }
             
             // $this->json($results);
          }
     
-         return $this->render('searchBar.html.twig', [
+         return $this->render('search/searchBar.html.twig', [
              'form' => $form->createView(),
-             'results' => $results 
-                 
+             'results' => $results
              ]);
          
     }

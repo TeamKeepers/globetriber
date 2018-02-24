@@ -29,11 +29,10 @@
                         <input id="header-element" type="text" class="form-control" placeholder="Recherche ..."> 
                     </div>
                 </span>
-{#               
-                {{ render(controller(
-                    'AppBundle:Post:SearchBar'
-                )) }}
-#}
+
+                {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                {{ form_end(form) }}
 
                 {% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}
                     

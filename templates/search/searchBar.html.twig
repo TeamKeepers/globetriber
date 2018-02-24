@@ -7,3 +7,15 @@
     }) }}
 
 {{ form_end(form) }}
+
+    <ul>
+        {% for result in results %}
+            <li>
+                {% if result.username is defined %}
+                    {{ result.username }}
+                {% else %}
+                    {{ result.title }} - {{ result.description }}
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
