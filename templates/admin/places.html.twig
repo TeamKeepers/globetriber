@@ -5,76 +5,91 @@
 {% block body %}
 <div class="content">
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card strpied-tabled-with-hover">
-                    <div class="card-header ">
-                        <h4 class="card-title">Lieux persos (WIP diviser apparts/coworking)</h4>
+{#                {% for place in places %}#}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card strpied-tabled-with-hover">
+                                <div class="card-header ">
+                                    <h4 class="card-title">Lieux persos</h4>
+                                </div>
+                                <div class="card-body table-full-width table-responsive">
+                                    <table class="table table-hover table-striped">
+                                        <thead>
+                                            <th>ID</th>
+                                            <th>Image</th> <!-- Limiter la taille -->
+                                            <th>Titre</th>
+                                            <th>Description</th> <!-- Limiter le nombre de caractères -->
+                                            <th>Ville</th>
+                                            <th>Pays</th>
+                                        <!-- Ajouter d'autres détails ? -->
+                                        </thead>
+                                        
+                                        {% for place in places %}
+                                            {% if place.types == 'sleep' %}
+                                                <tbody>
+                                                    <tr>
+                                                        <td>{{ place.id }}</td> 
+                                                        <td>{#{{ asset('uploads/place/' ~ app.place.image )}}#}</td> 
+                                                        <td>{{ place.title }}</td>
+                                                        <td>{{ place.description }}</td>
+                                                        <td>{{ place.town }}</td>
+                                                        <td>{{ place.country }}</td>
+                                                        <td><a href="{{ path('place_details', {id : place.id}) }}">Détails</a></td>
+                                                    </tr> 
+                                                </tbody>
+                                            {% endif %}
+                                        {% endfor %}     
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-body table-full-width table-responsive">
-                        <table class="table table-hover table-striped">
-                            <thead>
-                            <th>ID</th>
-                            <th>Image</th> <!-- Limiter la taille -->
-                            <th>Titre</th>
-                            <th>Description</th> <!-- Limiter le nombre de caractères -->
-                            <th>Ville</th>
-                            <th>Pays</th>
-                            <!-- Ajouter d'autres détails ? -->
-                            </thead>
-                            <tbody>
-                                {% for place in places %}
-                                    <tr>
-                                        <td>{{ place.id }}</td> 
-                                        <td>{#{{ asset('uploads/place/' ~ app.place.image )}}#}</td> 
-                                        <td>{{ place.title }}</td>
-                                        <td>{{ place.description }}</td>
-                                        <td>{{ place.town }}</td>
-                                        <td>{{ place.country }}</td>
-                                        <td><a href="{{ path('place_details', {id : place.id}) }}">Détails</a></td>
-                                    </tr>
-                                {% endfor %} 
-                            </tbody>
-                        </table>
-                    </div> 
-               </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card strpied-tabled-with-hover">
-                    <div class="card-header ">
-                        <h4 class="card-title">Espaces coworking</h4>
+{#                {% endfor %}#}
+    </div>
+</div>
+<div class="content">
+    <div class="container-fluid">
+{#                {% for place in places %}#}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card-header ">
+                                <div class="card strpied-tabled-with-hover">
+                                    <h4 class="card-title">Espaces coworking</h4>
+                                </div>
+                                <div class="card-body table-full-width table-responsive">
+                                    <table class="table table-hover table-striped">
+                                        <thead>
+                                            <th>ID</th>
+                                            <th>Image</th> <!-- Limiter la taille -->
+                                            <th>Titre</th>
+                                            <th>Description</th> <!-- Limiter le nombre de caractères -->
+                                            <th>Ville</th>
+                                            <th>Pays</th>
+                                            <!-- Ajouter d'autres détails ? -->
+                                        </thead>
+                                        
+                                        {% for place in places %}
+                                            {% if place.types == 'work' %}
+                                                <tbody>
+                                                    <tr>
+                                                        <td>{{ place.id }}</td> 
+                                                        <td>{#{{ asset('uploads/place/' ~ app.place.image )}}#}</td> 
+                                                        <td>{{ place.title }}</td>
+                                                        <td>{{ place.description }}</td>
+                                                        <td>{{ place.town }}</td>
+                                                        <td>{{ place.country }}</td>
+                                                        <td><a href="{{ path('place_details', {id : place.id}) }}">Détails</a></td>
+                                                    </tr>
+                                                </tbody>
+                                                {% endif %}
+                                        {% endfor %}
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-body table-full-width table-responsive">
-                        <table class="table table-hover table-striped">
-                            <thead>
-                            <th>ID</th>
-                            <th>Image</th> <!-- Limiter la taille -->
-                            <th>Titre</th>
-                            <th>Description</th> <!-- Limiter le nombre de caractères -->
-                            <th>Ville</th>
-                            <th>Pays</th>
-                            <!-- Ajouter d'autres détails ? -->
-                            </thead>
-                            <tbody>
-                                {% for place in places %}
-                                    <tr>
-                                        <td>{{ place.id }}</td> 
-                                        <td>{#{{ asset('uploads/place/' ~ app.place.image )}}#}</td> 
-                                        <td>{{ place.title }}</td>
-                                        <td>{{ place.description }}</td>
-                                        <td>{{ place.town }}</td>
-                                        <td>{{ place.country }}</td>
-                                        <td><a href="{{ path('place_details', {id : place.id}) }}">Détails</a></td>
-                                    </tr>
-                                {% endfor %} 
-                            </tbody>
-                        </table>
-                    </div> 
-               </div>
-            </div>
-        </div>
+{#                 {% endfor %}                           #}
+            
     </div>
 </div>
 {% endblock %}
