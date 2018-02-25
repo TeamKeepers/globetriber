@@ -29,7 +29,7 @@ class SearchRepository extends ServiceEntityRepository
                 $qb = $this->createQueryBuilder('u');
                 
                 $qb
-                    ->select('u.username')
+                    ->select('u.username, u.id')
                     ->where('u.username LIKE :username')->setParameter(':username', '%'.$username.'%')
                     ->orderBy('u.username', 'ASC');
                 

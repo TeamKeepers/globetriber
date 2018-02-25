@@ -13,6 +13,7 @@
             <li>
                 {% if result.username is defined %}
                     {{ result.username }}
+                    <button type="button" class="btn btn-primary" value="{{ result.id }}" action="submit" name="askFriendship">Ajouter</button>
                 {% else %}
                     {{ result.title }} - {{ result.description }}
                 {% endif %}
