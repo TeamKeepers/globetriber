@@ -1,7 +1,9 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    
+    <?php
+    var_dump($place);
+    ?>
 <!-- Carousel -->
 <div id="carouselExampleIndicators" class="carousel slide">
     <ol class="carousel-indicators">
@@ -52,7 +54,7 @@
     <div class="row">
         <div class="col-md-8 offset-md-2 text-center">
             <h2 class="title">{{ place.title }}</h2>
-            <h4 class="description small text-justify">{{ place.description }}</h4>
+            <h4 class="description small text-justify text-center">{{ place.description }}</h4>
         </div>
         <!-- Pouce en l'air / pouce en bas -->
         <div class="col-md-2 like text-center">

@@ -4,6 +4,10 @@
 {% block title %} Détails du lieu {% endblock %}
 
 {% block body %}
+    <?php
+    var_dump($place);
+    ?>
+    
     <h1>Détails du lieu {{ place.id }} :</h1>
     <h3> {{ place.title }} </h3> 
     {# Définir ce que l'on veut afficher dans les détails du lieu #}
@@ -17,188 +21,178 @@
                                     <h4 class="card-title">Modifier le lieu</h4>
                                 </div>
                                 <div class="card-body">
-                                    <form>
-                                        {#<div class="row">
-                                            <div class="col-md-12 px-1">
-                                                <div class="form-group">
-                                                    <label>Photo</label>
-                                                    <input type="text" class="form-control" placeholder="Pseudo" value="{{ asset('uploads/place/' ~ app.place.image )}}">
-                                                </div>
-                                            </div>
-                                        </div>#}
-                                        <div class="row">
-                                            <div class="col-md-12 px-1">
-                                                <div class="form-group">
-                                                    <label>Titre</label>
-                                                    <input type="text" class="form-control" value="{{ place.title }}">
-                                                </div>
+                                    <div class="row">
+                                        <div class="col-md-12 px-1">
+                                            <div class="form-group">
+                                                <label>Titre</label>
+                                                <input type="text" class="form-control" value="{{ place.title }}">
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>Ville</label>
-                                                    <textarea rows="4" cols="80" class="form-control" value="{{ place.town }}"></textarea>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>Code Postal</label>
-                                                    <textarea rows="4" cols="80" class="form-control" value="{{ place.postalCode }}"></textarea>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>Pays</label>
-                                                    <textarea rows="4" cols="80" class="form-control" value="{{ place.country }}"></textarea>
-                                                </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Ville</label>
+                                                <textarea rows="4" cols="80" class="form-control" value="{{ place.town }}"></textarea>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label>Description</label>
-                                                    <textarea rows="4" cols="80" class="form-control" value="{{ place.description }}"></textarea>
-                                                </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Code Postal</label>
+                                                <textarea rows="4" cols="80" class="form-control" value="{{ place.postalCode }}"></textarea>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label>Type d'internet</label>
-                                                    <textarea rows="4" cols="80" class="form-control" value="{{ place.internet }}"></textarea>
-                                                </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Pays</label>
+                                                <textarea rows="4" cols="80" class="form-control" value="{{ place.country }}"></textarea>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-2">
-                                                <div class="form-group">
-                                                    <label>Accessibilité</label>
-                                                    <textarea rows="4" cols="80" class="form-control" value="{{ place.accessibility }}"></textarea>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="form-group">
-                                                    <label>Cuisine</label>
-                                                    <textarea rows="4" cols="80" class="form-control" value="{{ place.kitchen }}"></textarea>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="form-group">
-                                                    <label>Parking</label>
-                                                    <textarea rows="4" cols="80" class="form-control" value="{{ place.parking }}"></textarea>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="form-group">
-                                                    <label>Lits</label>
-                                                    <textarea rows="4" cols="80" class="form-control" value="{{ place.bed }}"></textarea>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="form-group">
-                                                    <label>bureau</label>
-                                                    <textarea rows="4" cols="80" class="form-control" value="{{ place.desk }}"></textarea>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="form-group">
-                                                    <label>Air conditionnée</label>
-                                                    <textarea rows="4" cols="80" class="form-control" value="{{ place.airConditioning }}"></textarea>
-                                                </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Description</label>
+                                                <textarea rows="4" cols="80" class="form-control" value="{{ place.description }}"></textarea>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-4 px-1">
-                                                <div class="form-group">
-                                                    <label>Machine à laver</label>
-                                                    <input type="text" class="form-control" value="{{ place.washingMachine }}">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4 px-1">
-                                                <div class="form-group">
-                                                    <label>Prises éléctriques</label>
-                                                    <input type="text" class="form-control" value="{{ place.outlet }}">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4 px-1">
-                                                <div class="form-group">
-                                                    <label>Autres</label>
-                                                    <input type="text" class="form-control" value="{{ place.other }}">
-                                                </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Type d'internet</label>
+                                                <textarea rows="4" cols="80" class="form-control" value="{{ place.internet }}"></textarea>
                                             </div>
                                         </div>
-                                        {#FIN DÉTAILS LIEUX PERSO#}
-                                        
-                                        {#DEBUT DÉTAILS LIEUX COWORKING#}
-                                        <div class="row">
-                                            <div class="col-md-2 px-1">
-                                                <div class="form-group">
-                                                    <label>Nombre de places</label>
-                                                    <input type="text" class="form-control" value="{{ place.capacity }}">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2 px-1">
-                                                <div class="form-group">
-                                                    <label>Bureau privatif</label>
-                                                    <input type="text" class="form-control" value="{{ place.privateDesk }}">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2 px-1">
-                                                <div class="form-group">
-                                                    <label>Ordinateur</label>
-                                                    <input type="text" class="form-control" value="{{ place.computer }}">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2 px-1">
-                                                <div class="form-group">
-                                                    <label>Imprimante</label>
-                                                    <input type="text" class="form-control" value="{{ place.printer }}">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2 px-1">
-                                                <div class="form-group">
-                                                    <label>Scanner</label>
-                                                    <input type="text" class="form-control" value="{{ place.scanner }}">
-                                                </div>
-                                            </div>
-                                        
-                                            <div class="col-md-2 px-1">
-                                                <div class="form-group">
-                                                    <label>Projecteur</label>
-                                                    <input type="text" class="form-control" value="{{ place.projector }}">
-                                                </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label>Accessibilité</label>
+                                                <textarea rows="4" cols="80" class="form-control" value="{{ place.accessibility }}"></textarea>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-4 px-1">
-                                                <div class="form-group">
-                                                    <label>Lieu pour siester</label>
-                                                    <input type="text" class="form-control" value="{{ place.napStation }}">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4 px-1">
-                                                <div class="form-group">
-                                                    <label>Tableau blanc</label>
-                                                    <input type="text" class="form-control" value="{{ place.whiteBoard }}">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4 px-1">
-                                                <div class="form-group">
-                                                    <label>Nourriture gratuite</label>
-                                                    <input type="text" class="form-control" value="{{ place.freeSnack }}">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4 px-1">
-                                                <div class="form-group">
-                                                    <label>Boissons gratuites</label>
-                                                    <input type="text" class="form-control" value="{{ place.freeDrink }}">
-                                                </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label>Cuisine</label>
+                                                <textarea rows="4" cols="80" class="form-control" value="{{ place.kitchen }}"></textarea>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-info btn-fill pull-right">Mettre à jour le  Profil</button>
-                                        <div class="clearfix"></div>
-                                    </form>
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label>Parking</label>
+                                                <textarea rows="4" cols="80" class="form-control" value="{{ place.parking }}"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label>Lits</label>
+                                                <textarea rows="4" cols="80" class="form-control" value="{{ place.bed }}"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label>bureau</label>
+                                                <textarea rows="4" cols="80" class="form-control" value="{{ place.desk }}"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label>Air conditionnée</label>
+                                                <textarea rows="4" cols="80" class="form-control" value="{{ place.airConditioning }}"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4 px-1">
+                                            <div class="form-group">
+                                                <label>Machine à laver</label>
+                                                <input type="text" class="form-control" value="{{ place.washingMachine }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 px-1">
+                                            <div class="form-group">
+                                                <label>Prises éléctriques</label>
+                                                <input type="text" class="form-control" value="{{ place.outlet }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 px-1">
+                                            <div class="form-group">
+                                                <label>Autres</label>
+                                                <input type="text" class="form-control" value="{{ place.other }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {#FIN DÉTAILS LIEUX PERSO#}
+
+                                    {#DEBUT DÉTAILS LIEUX COWORKING#}
+                                    <div class="row">
+                                        <div class="col-md-2 px-1">
+                                            <div class="form-group">
+                                                <label>Nombre de places</label>
+                                                <input type="text" class="form-control" value="{{ place.capacity }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 px-1">
+                                            <div class="form-group">
+                                                <label>Bureau privatif</label>
+                                                <input type="text" class="form-control" value="{{ place.privateDesk }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 px-1">
+                                            <div class="form-group">
+                                                <label>Ordinateur</label>
+                                                <input type="text" class="form-control" value="{{ place.computer }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 px-1">
+                                            <div class="form-group">
+                                                <label>Imprimante</label>
+                                                <input type="text" class="form-control" value="{{ place.printer }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 px-1">
+                                            <div class="form-group">
+                                                <label>Scanner</label>
+                                                <input type="text" class="form-control" value="{{ place.scanner }}">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-2 px-1">
+                                            <div class="form-group">
+                                                <label>Projecteur</label>
+                                                <input type="text" class="form-control" value="{{ place.projector }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4 px-1">
+                                            <div class="form-group">
+                                                <label>Lieu pour siester</label>
+                                                <input type="text" class="form-control" value="{{ place.napStation }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 px-1">
+                                            <div class="form-group">
+                                                <label>Tableau blanc</label>
+                                                <input type="text" class="form-control" value="{{ place.whiteBoard }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 px-1">
+                                            <div class="form-group">
+                                                <label>Nourriture gratuite</label>
+                                                <input type="text" class="form-control" value="{{ place.freeSnack }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 px-1">
+                                            <div class="form-group">
+                                                <label>Boissons gratuites</label>
+                                                <input type="text" class="form-control" value="{{ place.freeDrink }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-info btn-fill pull-right">Mettre à jour le  Profil</button>
+                                    <div class="clearfix"></div>
                                 </div>
                             </div>
                         </div>
