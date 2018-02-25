@@ -1,0 +1,18 @@
+
+{% extends "base.html.twig" %}
+
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block title %} Ajout d'un lieu {% endblock%}
+
+{% block body %}
+    
+    <fieldset>
+        <legend>Ajouter un lieu</legend>
+    
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+        {{ form_end(form) }}
+    </fieldset>
+    
+{% endblock %}

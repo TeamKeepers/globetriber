@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    <head>
+        
+        {% include 'meta.html.twig' %}
+        
+        <title>{% block title %}GlobeTribers{% endblock %}</title>
+        
+        {% include 'stylesheets.html.twig' %}
+        
+    </head>
+    <body>
+        
+        <header>
+            
+            <div id="header-row" class="row">
+                <span class="col-5 col-md-3">
+                    <a href="{{ path('home') }}">
+                        <img id="logo" src="{{ asset('img/logoGT_v2.png') }}" alt="GlobeTribers">
+                    </a>
+                </span>
+
+                <span id="modif-recherche" class="col-5 col-md-7">
+                    <div class="input-group form-group-no-border input-lg">
+                        <div class="input-group-prepend">
+                          {# ChoiceType et Form pour la sélection #}
+                          <span id="header-selection" class="input-group-text"><i class="now-ui-icons users_circle-08"></i></span>
+                        </div>
+                        <input id="header-element" type="text" class="form-control" placeholder="Recherche ...">
+                    </div>
+                </span>
+                
+                {% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}
+                    
+                    <span id="icons-log" class="col-1">
+                        <a class="nav-link text-right" title="Me déconnecter" href="/logout">
+                            <span class="no-icon"><i class="fas fa-power-off fa-2x"></i></span>
+                        </a>
+                        <a class="nav-link disabled text-right" title="Mes paramètres" href="#">
+                            <span class="no-icon"><i class="fas fa-cog fa-2x"></i></span>
+                        </a>
+                    </span>
+                    
+                {% endif %}
+                
+            </div>
+                
+            <nav id="nav-header">
+                <ul class="nav nav-justified fixed-bottom">
+                    {% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}
+                        <li class="nav-item" title="Voir mon profil">
+                            <a class="nav-link" href="{{ path('profile') }}"><i class="fas fa-user-circle fa-2x"></i></a>
+                        </li>
+                        <li class="nav-item" title="Messagerie">
+                            <a class="nav-link" href="#"><i class="fas fa-comments fa-2x"></i></a>
+                        </li>
+                        <li class="nav-item" title="Accueil">
+                            <a class="nav-link" href="{{ path('home') }}"><i class="fas fa-home fa-2x"></i></a>
+                        </li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li class="nav-item" title="Aller sur l'interface Backoffice">
+                                <a class="nav-link disabled" href="{{ path('homeadmin') }}"><i class="fas fa-chart-area fa-2x"></i></a>
+                            </li> 
+                        {% endif %}
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="" data-toggle="modal" data-target="#storytelling" title="Découvrez notre histoire..."><i class="far fa-newspaper fa-2x"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('user_registration') }}">Inscription</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('login') }}">Connexion</a>
+                        </li>
+                    {% endif %}
+                    
+                    
+                </ul>
+            </nav>
+            
+        </header>
+        
+        <main class="container">
+            
+            {% include 'modal_base.html.twig' %}
+            
+            {% block body %}{% endblock %} 
+            
+        </main>
+        
+        <footer>
+            
+            
+            
+        </footer>
+    
+        {% include 'scripts.html.twig' %}
+        
+    </body>
+
+</html>

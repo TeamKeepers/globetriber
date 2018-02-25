@@ -1,0 +1,16 @@
+{% extends "base.html.twig" %}
+
+{% use "bootstrap_4_layout.html.twig" %}
+
+{% block body %}
+    
+    <fieldset>
+        <legend>Devenez un Triber</legend>
+        
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+        {{ form_end(form) }}
+        
+    </fieldset>
+
+{% endblock %} 
