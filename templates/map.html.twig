@@ -4,25 +4,59 @@
 {% block title %} Recherche d'un lieu {% endblock%}
 
 {% block body %}
-    
-       {{ form_start(form) }}
-            {{ form_widget(form) }}
-        {{ form_end(form) }}
-        
-         <h2>Affichage Maps</h2>
-    
-    <div id="map"></div>
-    <h3>Bienvenue sur la liste des produits</h3>
 
-    {# generate place results #}
-           <ul>
-        {% for result in results %}
-            <li>
-                {{ result.title }} {{ result.description }}
-                   
-            </li>
-        {% endfor %}
-    </ul> 
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+
+    <h2>Affichage Maps</h2>
+
+    <div id="map"></div>
+
+
+
+    
+    <!-- Carousel -->
+   {% set foo = 'results'%}
+    {% set plimit = 3 %}
+    {% if results|length != 0 %}
+    <h3>Bienvenue sur la liste des produits</h3>
+        <div id="carouselExampleIndicators" class="carousel slide">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+            </ol> 
+            <div class="carousel-inner" role="listbox">
+                <div id ="slider-home" class="carousel-item active">
+                    <div  class="page-header header-filter">
+                        {% for result in results %} 
+                            <div class="page-header-image" style="background-image: url({{ asset('uploads/place/' ~ result.image )}});">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h3> {{ result.title }}</h3>
+                                    <p> {{ result.description }} </p>
+                                    <a href="{{ path('product_details', {id : result.id}) }}">Détails</a>
+                                </div>
+                            </div> 
+                        {% endfor %}
+                    </div>
+                </div>  
+            </div>
+            <div class="carousel-item"></div>  
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <i class="fas fa-angle-left fa-3x"></i>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <i class="fas fa-angle-right fa-3x"></i>
+            </a>
+        </div>
+    {% endif %}
+
+    
+
+    <!-- End carousel -->
+
    <script>
       var markers;
       var map;

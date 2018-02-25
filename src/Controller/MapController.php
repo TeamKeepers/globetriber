@@ -29,18 +29,13 @@ class MapController extends Controller {
         $form = $this->createForm(MySearchType::class);
 
         $form->handleRequest($request);
-  //     
-       $form->attributes->set( 'controller', 'AppBundle:SearchPlace:form');
-    
-        $this->forward('App\Controller\MapController::searchPlace', ['form'  => $form,
-        ]);
         
         $results = [];
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $results = $placeRepo->findByTypes->get($form->getData());
-            $this->json($results);
+            $results = $placeRepo->findByTypes($form->getData());
+             $this->json($results);
         }
 
         return $this->render( 'map.html.twig', [

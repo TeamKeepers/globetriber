@@ -27,7 +27,7 @@ class PlaceRepository extends ServiceEntityRepository {
     public function findByTypes($place) {
         $qb = $this->createQueryBuilder("p");
         $qb
-                ->select('p.title, p.description, p.image, p.lng, p.lat')
+                ->select('p.id, p.title, p.description, p.image, p.lng, p.lat')
                 ->setMaxResults(10)
                 ->setFirstResult(0)
         ;
