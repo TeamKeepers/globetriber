@@ -4,7 +4,11 @@
 
 {% block body %}
 
-
-    
+         
+      {{render(controller(
+            'App\\Controller\\MapController::searchPlace', { 'request' : app.request.attributes.get('form') } )) }} 
+               
+  
+   
 
 {% endblock %}

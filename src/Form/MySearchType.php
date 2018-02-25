@@ -2,7 +2,6 @@
 
 namespace App\Form;
 
-use App\Entity\Place;
 use App\Form\PlaceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -25,7 +24,8 @@ class MySearchType extends PlaceType {
                     'label' => 'Ville',
                     'required' => false
                 ])
-                ->add('Rechercher', SubmitType::class);
+         ->add('rechercher', SubmitType::class);
+              
         
         $builder->remove('title');
         $builder->remove('address');

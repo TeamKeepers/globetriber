@@ -1,32 +1,29 @@
-{% extends "base.html.twig" %}
 
 {% use "bootstrap_4_layout.html.twig" %}
 
 {% block title %} Recherche d'un lieu {% endblock%}
 
 {% block body %}
- 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-    {{ form_end(form) }}
-
-    <h2>Affichage Maps</h2>
+    
+       {{ form_start(form) }}
+            {{ form_widget(form) }}
+        {{ form_end(form) }}
+        
+         <h2>Affichage Maps</h2>
     
     <div id="map"></div>
     <h3>Bienvenue sur la liste des produits</h3>
 
     {# generate place results #}
-    <ul>
+           <ul>
         {% for result in results %}
             <li>
                 {{ result.title }} {{ result.description }}
                    
             </li>
         {% endfor %}
-    </ul>
-       
-    
-    <script >
+    </ul> 
+   <script>
       var markers;
       var map;
        function initMap(){
@@ -37,8 +34,13 @@
         });   
             
         var markers = new Array ();
-        
+ 
         {% for result in results %}
+        var title = "{{ result.title }}";
+        var description = "{{ result.description }}";
+        var image =  "{{ result.image }}" ;
+        var contentString = title + description + image; 
+           
             markers.push(new google.maps.Marker({
                 position:{
                     lat : {{result.lat}},
@@ -46,24 +48,28 @@
                     },
                 
                 map: map,
-            
-                animation: google.maps.Animation.DROP,
-               
+                info: new google.maps.InfoWindow({content: contentString }) 
+                            
             }));
+   
+        google.maps.event.addListener(markers, 'click', (function() {
+        this.info.open(map, this);
+         }));
         {% endfor %}
+     
         var bounds = new google.maps.LatLngBounds();
         markers.forEach(function(result){
             bounds.extend(result.position);
             map.fitBounds(bounds);
             map.setZoom(13); // Not working for now
-        })     
-        
-    }
+        });     
+      
+    } 
     </script>
      <script type="text/javascript" async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyLL_wAkO_vMlDVj_AEXH9HUKJ7lVVNTY&callback=initMap">
-    </script>
- 
+    </script>       
+   
     
 {% endblock%}
 
