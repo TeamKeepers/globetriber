@@ -1,9 +1,6 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    <?php
-    var_dump($place);
-    ?>
 <!-- Carousel -->
 <div id="carouselExampleIndicators" class="carousel slide">
     <ol class="carousel-indicators">
@@ -16,10 +13,10 @@
     <div class="carousel-inner" role="listbox">
         <div class="carousel-item active">
             <div class="page-header header-filter">
-                <div class="page-header-image" style="background-image: url('../assets/img/mainRoom4.jpg');"></div><!-- REVOIR LES CHEMINS! -->
+                <div class="page-header-image" style="background-image: url({{ asset('uploads/place/' ~ place.image )}});"></div><!-- REVOIR LES CHEMINS! -->
             </div>
         </div>
-        <div class="carousel-item">
+        {#<div class="carousel-item">
             <div class="page-header header-filter">
                 <div class="page-header-image" style="background-image: url('../assets/img/desk2.jpg');"></div><!-- REVOIR LES CHEMINS! -->
             </div>
@@ -38,7 +35,7 @@
             <div class="page-header header-filter">
                 <div class="page-header-image" style="background-image: url('../assets/img/bathroom4.jpg');"></div><!-- REVOIR LES CHEMINS! -->
             </div>
-        </div>
+        </div>#}
     </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
         <i class="fas fa-angle-left fa-3x"></i>
@@ -67,28 +64,43 @@
     </div>
 </div>
 <!-- End Description -->
+{#
+{% for key, value in places% }
 
+   {% if value == 1 %}
+
+         {{ key }}
+
+   {% endif %}
+
+{% endfor %}    
+#}
 <!-- Amenities -->
 <div class="container">
     <div class="row">
         <div class="col-md-8 ml-auto mr-auto text-center">
             <h4 class="description">Équipement</h4>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">internet: {{ place.internet }}</li>
-                <li class="list-group-item">accessibility: {{ place.accessibility }}</li>
-                <li class="list-group-item">kitchen: {{ place.kitchen }}</li>
-                <li class="list-group-item">parking: {{ place.parking }}</li>
-                <li class="list-group-item">outlet: {{ place.outlet }}</li>
-                <li class="list-group-item">airConditioning: {{ place.airConditioning }}</li>
-                <li class="list-group-item">printer: {{ place.printer }}</li>
-                <li class="list-group-item">projector: {{ place.projector }}</li>
-                <li class="list-group-item">other: {{ place.other }}</li>
-
+                {#{% for key, place in places %}
+                    {% if value == 1 %}
+                        {{ key }}
+                    {% endif %}
+                {% endfor %}#}
+                    <li class="list-group-item">internet: {{ place.internet }}</li>
+                    <li class="list-group-item">accessibility: {{ place.accessibility }}</li>
+                    <li class="list-group-item">kitchen: {{ place.kitchen }}</li>
+                    <li class="list-group-item">parking: {{ place.parking }}</li>
+                    <li class="list-group-item">outlet: {{ place.outlet }}</li>
+                    <li class="list-group-item">airConditioning: {{ place.airConditioning }}</li>
+                    <li class="list-group-item">printer: {{ place.printer }}</li>
+                    <li class="list-group-item">projector: {{ place.projector }}</li>
+                    <li class="list-group-item">other: {{ place.other }}</li>
+                
                 {% if place.types == 'sleep' %}
                     <li class="list-group-item">bed: {{place.bed}}</li>
-
                     <li class="list-group-item">washingMachine: {{place.washingMachine }}</li>
                     <li class="list-group-item">desk: {{place.desk }}</li>
+                    
                 {% elseif place.types == 'work'%}
                     <li class="list-group-item">capacity: {{place.capacity}}</li>
                     <li class="list-group-item">privateDesk: {{place.privateDesk }}</li>

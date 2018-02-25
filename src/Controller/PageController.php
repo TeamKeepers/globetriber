@@ -32,11 +32,23 @@ class PageController extends Controller
     {
         return $this->render('profile.html.twig');
     }
+    
+    /**
+     * 
+     * @Route("/profile/{id}", name="profile_details")
+     * 
+     */
+    public function profileUser()
+    {
+        return $this->render('profile.html.twig');
+    }
+    
+    
   
     
     /**
      * 
-     * @Route("home/product/{id}", name="product_details")
+     * @Route("product/{id}", name="product_details")
      * 
      */
     public function getProductDetails(Place $place)
@@ -46,12 +58,6 @@ class PageController extends Controller
         ]);
     }
     
-    
-    /**
-     * 
-     * @Route("home/product/{id}")
-     * 
-     */
     public function getProductFor(PlaceRepository $placeRepo)
     {
         $places = $placeRepo->findAll();
