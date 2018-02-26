@@ -31,7 +31,7 @@ class UserFixture extends Fixture {
             $user->setEmail('user' . $i . '@mail.com');
             $user->setFirstname('User' . $i);
             $user->setLastname('Fake');
-            $user->setPhotoProfile('public/img/users/user'.rand(2,30).'.png');
+            $user->setPhotoProfile('user'.rand(2,30).'.png');
             $user->setRoles('ROLE_USER');
             $user->setPassword(password_hash('user' . $i, PASSWORD_BCRYPT));
             $user->setBirthdate(\DateTime::createFromFormat('Y/m/d h:i:s', (2000 - $i).'/01/01 00:00:00'));

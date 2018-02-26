@@ -1,15 +1,13 @@
 <?php
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Entity\Place;
-
 use App\Form\UserSearchType;
 use App\Repository\PlaceRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-
-
 
 class PageController extends Controller
 {

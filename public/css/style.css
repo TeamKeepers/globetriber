@@ -55,15 +55,11 @@ main {
     background-image: url("../img/head-home.jpg");
     background-position: center bottom;
     background-size: 100%;
+    background-repeat: no-repeat;
 }
 
-#header-selection, #header-element {
-    background: #FFF;
-    margin-top: 45px;
-}
-
-#modif-recherche {
-    margin-left: 0;
+#header_row form {
+    min-height: 20px;
 }
 
 #icons-log {

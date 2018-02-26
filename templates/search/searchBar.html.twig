@@ -1,0 +1,8 @@
+{{ form_start(form, {
+    'attr': {'class': 'col-5 col-md-7 input-group form-group-no-border input-lg input-group-prepend input-group-text', action: path('search')} 
+}) }}
+
+    {{ form_widget(form.search, {
+       'attr': {'class': 'form-control search-query'}  
+    }) }}
+{{ form_end(form) }}

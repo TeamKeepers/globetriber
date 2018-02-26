@@ -24,6 +24,32 @@ class UserRepository extends ServiceEntityRepository implements UserLoaderInterf
             ->getOneOrNullResult();
     }
     
+    public function findByPax($username) 
+    {
+                $qb = $this->createQueryBuilder('u');
+                
+                $qb
+                    ->select('u.username, u.id, u.photoProfile, u.description')
+                    ->where('u.username LIKE :username')->setParameter(':username', '%'.$username.'%')
+                    ->orderBy('u.username', 'ASC');
+                
+        
+        $results = $qb->getQuery()->getResult();
+        return $results;
+    }
+    
+    /*
+    public function findBySomething($value)
+    {
+        return $this->createQueryBuilder('u')
+            ->where('u.something = :value')->setParameter('value', $value)
+            ->orderBy('u.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+    */
 }
 
 
