@@ -46,8 +46,28 @@ class PlaceType extends AbstractType {
                     ],
                     'required' => false
                 ])
+                ->add('outlet', CheckboxType::class, [
+                    'label' => 'Adaptateurs de prises',
+                    'required' => false,
+                ])
+                ->add('printer', CheckboxType::class, [
+                    'label' => 'Imprimante',
+                    'required' => false,
+                ])
+                ->add('scanner', CheckboxType::class, [
+                    'label' => 'Scanner',
+                    'required' => false,
+                ])
+                ->add('projector', CheckboxType::class, [
+                    'label' => 'Vidéoprojecteur',
+                    'required' => false,
+                ])
                 ->add('accessibility', CheckboxType::class, [
                     'label' => 'Accéssibilité',
+                    'required' => false,
+                ])
+                ->add('airConditioning', CheckboxType::class, [
+                    'label' => 'Air conditionné',
                     'required' => false,
                 ])
                 ->add('kitchen', CheckboxType::class, [
@@ -57,6 +77,19 @@ class PlaceType extends AbstractType {
                 ->add('parking', CheckboxType::class, [
                     'label' => 'Parking',
                     'required' => false,
+                ])
+                ->add('other', TextareaType::class, [
+                    'label' => 'Autres',
+                    'required' => false,
+                ])
+                ->add('types', ChoiceType::class, [
+                    'label' => 'Types',
+                    'multiple' => true,
+                    'expanded' => true,
+                    'choices' => [
+                        'Dormir ' => 'sleep', 
+                        'Travailler' => 'work',
+                    ]
                 ])
                 
                 // ----------------Sleep type choice
@@ -77,34 +110,13 @@ class PlaceType extends AbstractType {
                         '12' => '12',
                     ]
                 ])
-                ->add('outlet', CheckboxType::class, [
-                    'label' => 'Outlet',
-                    'required' => false,
-                ])
-                ->add('other', TextareaType::class, [
-                    'label' => 'Autres',
-                    'required' => false,
-                ])
-                ->add('desk', CheckboxType::class, [
-                    'label' => 'Bureau',
-                    'required' => false,
-                ])
-                ->add('airConditioning', CheckboxType::class, [
-                    'label' => 'Air conditionné',
-                    'required' => false,
-                ])
+//                ->add('desk', CheckboxType::class, [
+//                    'label' => 'Bureau',
+//                    'required' => false,
+//                ])
                 ->add('washingMachine', CheckboxType::class, [
                     'label' => 'Machine à laver',
                     'required' => false,
-                ])
-                ->add('types', ChoiceType::class, [
-                    'label' => 'Types',
-                    'multiple' => true,
-                    'expanded' => true,
-                    'choices' => [
-                        'Dormir ' => 'sleep',
-                        'Travailler' => 'work',
-                    ]
                 ])
 
 
@@ -120,18 +132,6 @@ class PlaceType extends AbstractType {
                 ])
                 ->add('computer', CheckboxType::class, [
                     'label' => 'Ordinateur',
-                    'required' => false,
-                ])
-                ->add('printer', CheckboxType::class, [
-                    'label' => 'Imprimante',
-                    'required' => false,
-                ])
-                ->add('scanner', CheckboxType::class, [
-                    'label' => 'Scanner',
-                    'required' => false,
-                ])
-                ->add('projector', CheckboxType::class, [
-                    'label' => 'Vidéoprojecteur',
                     'required' => false,
                 ])
                 ->add('napStation', CheckboxType::class, [
