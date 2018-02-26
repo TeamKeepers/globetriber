@@ -1,13 +1,15 @@
 <?php
-
 namespace App\Controller;
 
 use App\Entity\Place;
+
 use App\Form\UserSearchType;
 use App\Repository\PlaceRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+
+
 
 class PageController extends Controller
 {
@@ -25,16 +27,17 @@ class PageController extends Controller
       
     }
   
-    /**
-     * 
-     * @Route("/profile", name="profile")
-     * 
-     */
-    public function profile()
-    {
-        return $this->render('profile.html.twig');
-    }
-    
+//    /**
+  //   * 
+    // * @Route("/profile", name="profile")
+    // * 
+   //  */
+   // public function profile()
+  //  {
+    //    return $this->render('profile.html.twig');
+   // }
+    //*/
+  
      /**
      * 
      * @Route("/addplace", name="add_place")
@@ -79,6 +82,15 @@ class PageController extends Controller
                     'results' => $results,
            
         ]);
+    }
+    /**
+     * 
+     * @Route("/profile/{id}", name="profile_details")
+     * 
+     */
+    public function profileUser()
+    {
+        return $this->render('profile.html.twig');
     }
 
 }
