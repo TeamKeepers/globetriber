@@ -14,17 +14,18 @@ class SearchBarType extends AbstractType
     {
         $builder
             ->add('Recherche', ChoiceType::class, [
+                'label' => false,
                 'choices' => [
                     'pseudos' => 'username',
                     'lieux' => 'places'
                 ],
                 'attr' => [
-                    'class' => ''
+                    'class' => 'h-25 d-inline-block mw-100'
                 ]
             ])
             ->add('search', TextType::class, [
                 'attr' => [
-                    'class' => ''
+                    'placeholder' => 'Recherche ...'
                 ]
             ]);
             

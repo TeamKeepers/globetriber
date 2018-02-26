@@ -1,33 +1,8 @@
 {{ form_start(form, {
-    'attr': {'class': 'col-5 col-md-7 input-group form-group-no-border input-lg input-group-prepend input-group-text'} 
+    'attr': {'class': 'col-5 col-md-7 input-group form-group-no-border input-lg input-group-prepend input-group-text', action: path('search')} 
 }) }}
 
     {{ form_widget(form.search, {
        'attr': {'class': 'form-control search-query'}  
     }) }}
 {{ form_end(form) }}
-
-
-        {% for result in results %}
-            {% if result.username is defined %}
-                <div class="card text-center" style="width: 18rem;">
-                    <img class="card-img-top" src="{{ asset('uploads/photos_profile/' ~ result.photoProfile )}}">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ result.username }}</h5>
-                        <p class="card-text">{{ result.description }}</p>
-                        <button type="button" class="btn btn-primary" value="{{ result.id }}" action="submit" name="askFriendship"><i class="fas fa-plus-circle"></i></button>
-                    </div>
-                </div>
-                    
-                    
-            {% else %}
-                <div class="card text-center" style="width: 18rem;">
-                    <img class="card-img-top" src="{{ asset('uploads/place/' ~ result.image )}}">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ result.title }}</h5>
-                        <p class="card-text">{{ result.description }}</p>
-                        <button type="button" class="btn btn-primary" value="{{ result.id }}" action="submit" name="placeDetails">Voir</button>
-                    </div>
-                </div>
-            {% endif %}
-        {% endfor %}

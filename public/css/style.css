@@ -53,13 +53,8 @@ main {
     background-repeat: no-repeat;
 }
 
-#header-selection, #header-element {
-    background: #FFF;
-    margin-top: 45px;
-}
-
-#modif-recherche {
-    margin-left: 0;
+#header_row form {
+    min-height: 20px;
 }
 
 #icons-log {

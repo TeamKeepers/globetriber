@@ -42,8 +42,8 @@ class PlaceRepository extends ServiceEntityRepository {
             }
             $qb->orWhere($expr);
         }
-    
-        $criteria = ['accessibility', 'kitchen', 'desk', 'airConditioning', 'washingMachine', 'privateDesk', 'computer', 'parking', 'scanner', 'projector', 'printer', 'whiteBoard', 'napStation', 'terrace', 'freeDrink', 'freeSnack', 'internet', 'bed', 'town', 'country' ];
+
+        $criteria = ['accessibility', 'kitchen', 'desk', 'airConditioning', 'washingMachine', 'privateDesk', 'computer', 'parking', 'scanner', 'projector', 'printer', 'whiteBoard', 'napStation', 'terrace', 'freeDrink', 'freeSnack', 'internet', 'bed', 'town', 'country'];
 
         $i = 0;
         foreach ($criteria as $criterium) {
@@ -55,7 +55,19 @@ class PlaceRepository extends ServiceEntityRepository {
             }
         }
 
-        
+
+        $results = $qb->getQuery()->getResult();
+        return $results;
+    }
+
+    public function findByPlace($placeName) {
+
+        $qb = $this->createQueryBuilder('p');
+        $qb
+                ->select('p.title, p.description, p.image, p.id')
+                ->where('p.title LIKE :places')->setParameter(':places', '%' . $placeName . '%')
+                ->orderBy('p.title', 'ASC');
+
         $results = $qb->getQuery()->getResult();
         return $results;
     }
