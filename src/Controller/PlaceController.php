@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Place;
+use App\Entity\Recommendation;
 use App\Form\PlaceType;
+use App\Form\RecommendationType;
 use App\Service\Geocoder;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -64,10 +66,46 @@ class PlaceController extends Controller {
 
         return $this->render(
                         'add_place.html.twig', array(
-                            'form' => $form->createView())
+                        'form' => $form->createView())
         );
+        
     }
+    // --------------------- Requete ajout like place from user 
+    /**
+     * @Route("/addplace", name="add_recommendation")  
+     */
+    
+     public function addRecommendation(ObjectManager $manager, Request $request) {
 
+        $recommendation = new Recommendation();
+
+        $form = $this->createForm(RecommendationType::class, $recommendation)
+                ->add('add', SubmitType::class);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            if($recommendation['validation'] === true){
+                
+             $recommendation->setPlace($place);
+             $recommendation->setUser($user);
+             $recommendation->setComment($comment);
+             
+            }
+    
+            $manager->persist($place);
+            $manager->flush();
+
+
+            return $this->redirectToRoute('product');
+        }
+
+        return $this->render(
+                        'place_details.html.twig', array(
+                        'form' => $form->createView())
+        );
+        
+    }
 
 
 }
