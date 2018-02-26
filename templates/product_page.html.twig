@@ -50,8 +50,15 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 offset-md-2 text-center">
-            <h2 class="title">{{ place.title }}</h2>
+            <h1 class="display-4">{{ place.title }}</h1>
             <h4 class="description small text-justify text-center">{{ place.description }}</h4>
+            <!-- Début affichage capacité / Beds -->
+            {% if place.types == 'sleep' %}
+                <h4 class="description text-center"><strong>Lit(s): </strong>{{place.bed}}</h4>
+            {% elseif place.types == 'work'%}
+                        <h4 class="description text-center"><strong>Capacité: </strong>{{place.capacity}}</h4>
+            {% endif %}
+            <!-- Fin affichage capacité / Beds -->
         </div>
         <!-- Pouce en l'air / pouce en bas -->
         <div class="col-md-2 like text-center">
@@ -59,57 +66,58 @@
             <a href=""><i class="fas fa-check"></i></a>
             <a href=""><i class="fas fa-times"></i></a>
             <p>x% des gens conseillent ce lieu</p> <!-- A rendre dynamique -->
+            <div class="row">
+                <div class="col-md-12">
+                    {#Formulaire "ajouter ce lieu"
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    {{ form_end(form) }}#}
+                </div>
+            </div>
         </div>
         <!-- Fin Pouce en l'air / pouce en bas -->
     </div>
 </div>
 <!-- End Description -->
-{#
-{% for key, value in places% }
 
-   {% if value == 1 %}
-
-         {{ key }}
-
-   {% endif %}
-
-{% endfor %}    
-#}
 <!-- Amenities -->
 <div class="container">
     <div class="row">
         <div class="col-md-8 ml-auto mr-auto text-center">
             <h4 class="description">Équipement</h4>
             <ul class="list-group list-group-flush">
-                {#{% for key, place in places %}
-                    {% if value == 1 %}
-                        {{ key }}
-                    {% endif %}
-                {% endfor %}#}
-                    <li class="list-group-item">internet: {{ place.internet }}</li>
-                    <li class="list-group-item">accessibility: {{ place.accessibility }}</li>
-                    <li class="list-group-item">kitchen: {{ place.kitchen }}</li>
-                    <li class="list-group-item">parking: {{ place.parking }}</li>
-                    <li class="list-group-item">outlet: {{ place.outlet }}</li>
-                    <li class="list-group-item">airConditioning: {{ place.airConditioning }}</li>
-                    <li class="list-group-item">printer: {{ place.printer }}</li>
-                    <li class="list-group-item">projector: {{ place.projector }}</li>
-                    <li class="list-group-item">other: {{ place.other }}</li>
+                {# Liste des amenities globales #}
                 
+                {# Internet est un choice obligatoire donc on l'affiche tout le temps (hors de la boucle for) #}
+                <li class="list-group-item">Type d'internet : {{ place.internet }}</li>
+                
+                {# Ici on fait la boucle pour vérifier si toutes les clés ci-dessous sont définies et ont une valeur, si c'est le cas on les affiche #}
+                {% for key in ['outlet','accessibility', 'kitchen', 'parking', 'airConditioning', 'printer', 'scanner', 'projector'] %}
+                    {% if attribute(place, key) is defined and attribute(place, key) is not empty %}
+                            <li class="list-group-item">{{ key }}{#: {{ attribute(place, key) }}#}</li>
+                    {% endif %}  
+                {% endfor %}
+                {# si la valeur de other est vide alors on ne l'affiche pas #}
+                {% if place.other is not empty %}
+                  <li class="list-group-item">Autre : {{ place.other }}</li>
+                {% endif %}
+                
+                {# Liste des amenities pour sleep #}
                 {% if place.types == 'sleep' %}
-                    <li class="list-group-item">bed: {{place.bed}}</li>
-                    <li class="list-group-item">washingMachine: {{place.washingMachine }}</li>
-                    <li class="list-group-item">desk: {{place.desk }}</li>
+                    {% for key in ['washingMachine'] %}
+                        {% if attribute(place, key) is defined and attribute(place, key) is not empty %}
+                            <li class="list-group-item">{{ key }}{#: {{ attribute(place, key) }}#}</li>
+                        {% endif %}
+                    {% endfor %}
                     
+                {# Liste des amenities pour work #}    
                 {% elseif place.types == 'work'%}
-                    <li class="list-group-item">capacity: {{place.capacity}}</li>
-                    <li class="list-group-item">privateDesk: {{place.privateDesk }}</li>
-                    <li class="list-group-item">computer: {{place.computer }}</li>
-                    <li class="list-group-item">napStation:{{place.napStation }}</li>
-                    <li class="list-group-item">whiteBoard: {{place.whiteBoard }}</li>
-                    <li class="list-group-item">terrace: {{place.terrace }}</li>
-                    <li class="list-group-item">freeDrink: {{place.freeDrink }}</li>
-                    <li class="list-group-item">freeSnack: {{place.freeSnack }}</li>
+                    {# Ici on fait la boucle pour vérifier si toutes les clés ci-dessous sont définies et ont une valeur, si c'est le cas on les affiche #}
+                    {% for key in ['privateDesk','computer', 'napStation', 'whiteBoard', 'terrace', 'freeDrink', 'freeSnack'] %}
+                        {% if attribute(place, key) is defined and attribute(place, key) is not empty %}
+                            <li class="list-group-item">{{ key }}{#: {{ attribute(place, key) }}#}</li>
+                        {% endif %}
+                    {% endfor %}
                 {% endif %}
             </ul>
         </div>

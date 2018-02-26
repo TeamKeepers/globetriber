@@ -42,27 +42,17 @@ class PageController extends Controller
     {
         return $this->render('profile.html.twig');
     }
-    
-    
-  
+
     
     /**
      * 
      * @Route("product/{id}", name="product_details")
      * 
      */
-    public function getProductDetails(Place $place)
+    public function getProductDetails(Place $place, PlaceRepository $placeRepo)
     {
         return $this->render('product_page.html.twig', [
             'place' => $place
-        ]);
-    }
-    
-    public function getProductFor(PlaceRepository $placeRepo)
-    {
-        $places = $placeRepo->findAll();
-        return $this->render('product_page.html.twig', [
-            'places' => $places
         ]);
     }
     
