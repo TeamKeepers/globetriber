@@ -17,9 +17,16 @@ class SearchBarType extends AbstractType
                 'choices' => [
                     'pseudos' => 'username',
                     'lieux' => 'places'
+                ],
+                'attr' => [
+                    'class' => ''
                 ]
             ])
-            ->add('search', TextType::class);
+            ->add('search', TextType::class, [
+                'attr' => [
+                    'class' => ''
+                ]
+            ]);
             
     }
 

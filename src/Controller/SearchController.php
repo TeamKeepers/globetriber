@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class SearchController extends Controller
 {
     /**
-     * @Route("/search", name="search")  
+     * 
      */
     public function searchPaxAndPlace(Request $request, SearchRepository $searchRepo) {
        

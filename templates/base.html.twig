@@ -21,19 +21,18 @@
                     </a>
                 </span>
 
-              <span id="modif-recherche" class="col-5 col-md-7">
+{#              <span id="modif-recherche" class="col-5 col-md-7">
                     <div class="input-group form-group-no-border input-lg">
                         <div class="input-group-prepend">
                           <span id="header-selection" class="input-group-text"><i class="now-ui-icons users_circle-08"></i></span>
                         </div>
                         <input id="header-element" type="text" class="form-control" placeholder="Recherche ..."> 
                     </div>
-                </span>
+                </span>#}
 
-{#                {{ form_start(form) }}
-                    {{ form_widget(form) }}
-                {{ form_end(form) }}
-#}
+{{render(controller(
+            'App\\Controller\\SearchController::searchPaxAndPlace' )) }} 
+
                 {% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}
                     
                     <span id="icons-log" class="col-1">
