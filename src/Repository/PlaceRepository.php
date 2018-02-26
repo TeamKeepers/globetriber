@@ -9,8 +9,11 @@
 namespace App\Repository;
 
 use App\Entity\Place;
+use App\Entity\Recommendation;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Description of PlaceRepository
@@ -56,6 +59,29 @@ class PlaceRepository extends ServiceEntityRepository {
         }
 
         
+        $results = $qb->getQuery()->getResult();
+        return $results;
+    }
+    
+    public function findById($recommendation){
+         $qb = $this->createQueryBuilder("r");
+        $qb
+                ->select('r.id')
+                ->setMaxResults(10)
+                ->setFirstResult(0)
+        ;
+        
+        $locations = ['town', 'country'];
+        $i = 0;
+        
+        foreach ($locations as $location){ 
+            if(!empty($recommendation['location'])){
+                $value = $recommendation[$location];
+                    $qb->orWhere('r.location = :location' . $i);
+                    $qb->setParameter(':location' . $i, $value);
+                $i++; 
+            }       
+        }
         $results = $qb->getQuery()->getResult();
         return $results;
     }

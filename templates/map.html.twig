@@ -29,9 +29,9 @@
                 <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
             </ol> 
             <div class="carousel-inner" role="listbox">
-                <div id ="slider-home" class="carousel-item active">
+                        {% for key,result in results %} 
+                            <div id ="slider-home" class="carousel-item{%if key == 1 %} active{%endif %}">
                     <div  class="page-header header-filter">
-                        {% for result in results %} 
                             <div class="page-header-image" style="background-image: url({{ asset('uploads/place/' ~ result.image )}});">
                                 <div class="carousel-caption d-none d-md-block">
                                     <h3> {{ result.title }}</h3>
@@ -39,9 +39,9 @@
                                     <a href="{{ path('product_details', {id : result.id}) }}">Détails</a>
                                 </div>
                             </div> 
-                        {% endfor %}
                     </div>
                 </div>  
+                        {% endfor %}
             </div>
             <div class="carousel-item"></div>  
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

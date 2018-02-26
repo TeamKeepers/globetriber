@@ -35,7 +35,8 @@ class MapController extends Controller {
         if ($form->isSubmitted() && $form->isValid()) {
 
             $results = $placeRepo->findByTypes($form->getData());
-             $this->json($results);
+            
+            // return $this->json($results);
         }
 
         return $this->render( 'map.html.twig', [

@@ -17,7 +17,7 @@ use Symfony\Component\Validator\Constraints\Collection;
 
 /**
  * Place
- * @ORM\Entity(repositoryClass="PlaceRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\PlaceRepository")
  * @Table(
  *      name="place",
  *      indexes={
