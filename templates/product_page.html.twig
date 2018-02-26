@@ -1,0 +1,136 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<!-- Carousel -->
+<div id="carouselExampleIndicators" class="carousel slide">
+    <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+        <div class="carousel-item active">
+            <div class="page-header header-filter">
+                <div class="page-header-image" style="background-image: url({{ asset('uploads/place/' ~ place.image )}});"></div><!-- REVOIR LES CHEMINS! -->
+            </div>
+        </div>
+        {#<div class="carousel-item">
+            <div class="page-header header-filter">
+                <div class="page-header-image" style="background-image: url('../assets/img/desk2.jpg');"></div><!-- REVOIR LES CHEMINS! -->
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="page-header header-filter">
+                <div class="page-header-image" style="background-image: url('../assets/img/room6.jpg');"></div><!-- REVOIR LES CHEMINS! -->
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="page-header header-filter">
+                <div class="page-header-image" style="background-image: url('../assets/img/kitchen4.jpg');"></div><!-- REVOIR LES CHEMINS! -->
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="page-header header-filter">
+                <div class="page-header-image" style="background-image: url('../assets/img/bathroom4.jpg');"></div><!-- REVOIR LES CHEMINS! -->
+            </div>
+        </div>#}
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <i class="fas fa-angle-left fa-3x"></i>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <i class="fas fa-angle-right fa-3x"></i>
+    </a>
+</div>
+<!-- End carousel -->
+
+<!-- Description -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2 text-center">
+            <h1 class="display-4">{{ place.title }}</h1>
+            <h4 class="description small text-justify text-center">{{ place.description }}</h4>
+            <!-- Début affichage capacité / Beds -->
+            {% if place.types == 'sleep' %}
+                <h4 class="description text-center"><strong>Lit(s): </strong>{{place.bed}}</h4>
+            {% elseif place.types == 'work'%}
+                        <h4 class="description text-center"><strong>Capacité: </strong>{{place.capacity}}</h4>
+            {% endif %}
+            <!-- Fin affichage capacité / Beds -->
+        </div>
+        <!-- Pouce en l'air / pouce en bas -->
+        <div class="col-md-2 like text-center">
+            <p>Note du lieu:</p>
+            <a href=""><i class="fas fa-check"></i></a>
+            <a href=""><i class="fas fa-times"></i></a>
+            <p>x% des gens conseillent ce lieu</p> <!-- A rendre dynamique -->
+            <div class="row">
+                <div class="col-md-12">
+                    {#Formulaire "ajouter ce lieu"
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    {{ form_end(form) }}#}
+                </div>
+            </div>
+        </div>
+        <!-- Fin Pouce en l'air / pouce en bas -->
+    </div>
+</div>
+<!-- End Description -->
+
+<!-- Amenities -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 ml-auto mr-auto text-center">
+            <h4 class="description">Équipement</h4>
+            <ul class="list-group list-group-flush">
+                {# Liste des amenities globales #}
+                
+                {# Internet est un choice obligatoire donc on l'affiche tout le temps (hors de la boucle for) #}
+                <li class="list-group-item">Type d'internet : {{ place.internet }}</li>
+                
+                {# Ici on fait la boucle pour vérifier si toutes les clés ci-dessous sont définies et ont une valeur, si c'est le cas on les affiche #}
+                {% for key in ['outlet','accessibility', 'kitchen', 'parking', 'airConditioning', 'printer', 'scanner', 'projector'] %}
+                    {% if attribute(place, key) is defined and attribute(place, key) is not empty %}
+                            <li class="list-group-item">{{ key }}{#: {{ attribute(place, key) }}#}</li>
+                    {% endif %}  
+                {% endfor %}
+                {# si la valeur de other est vide alors on ne l'affiche pas #}
+                {% if place.other is not empty %}
+                  <li class="list-group-item">Autre : {{ place.other }}</li>
+                {% endif %}
+                
+                {# Liste des amenities pour sleep #}
+                {% if place.types == 'sleep' %}
+                    {% for key in ['washingMachine'] %}
+                        {% if attribute(place, key) is defined and attribute(place, key) is not empty %}
+                            <li class="list-group-item">{{ key }}{#: {{ attribute(place, key) }}#}</li>
+                        {% endif %}
+                    {% endfor %}
+                    
+                {# Liste des amenities pour work #}    
+                {% elseif place.types == 'work'%}
+                    {# Ici on fait la boucle pour vérifier si toutes les clés ci-dessous sont définies et ont une valeur, si c'est le cas on les affiche #}
+                    {% for key in ['privateDesk','computer', 'napStation', 'whiteBoard', 'terrace', 'freeDrink', 'freeSnack'] %}
+                        {% if attribute(place, key) is defined and attribute(place, key) is not empty %}
+                            <li class="list-group-item">{{ key }}{#: {{ attribute(place, key) }}#}</li>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- End Amenities -->
+
+<!-- Commentaires -->
+<div class="container comment col-md-7 ml-auto mr-autojumbotron rounded">
+    <h1 class="small display-4">Comment posted by user1234 on September 21 2018 at 18:34</h1> <!-- DYNAMISER !! -->
+    <hr class="my-4">
+    <p class="lead">J'ai passé un super moment chez machine !  Elle a été super accueillante et m'a offert pleins de cookies !</p><!-- DYNAMISER !! -->
+</div>
+<!-- End Commentaires -->
+
+{% endblock %}

@@ -34,15 +34,15 @@
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="{{path('places')}}">
                             <i class="fas fa-th-list fa-2x"></i>
                             <p>List of Places</p><!-- Liste des lieux et leurs détails -->
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="./table.html"><!-- A FAIRE -->
-                            <i class="fas fa-database fa-2x"></i>
-                            <p>Table List</p><!-- Liste des tables et leurs champs -->
+                        <a class="nav-link" href="{{path('comments')}}"><!-- A FAIRE -->
+                            <i class="far fa-comments fa-2x"></i>
+                            <p>Comments</p><!-- Liste des commentaires / gestion des commentaires -->
                         </a>
                     </li>
                     <li>
@@ -52,15 +52,15 @@
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="./icons.html"><!-- A FAIRE -->
-                            <i class="far fa-comments fa-2x"></i>
-                            <p>Comments</p><!-- Liste des commentaires / gestion des commentaires -->
-                        </a>
-                    </li>
-                    <li>
                         <a class="nav-link" href="./maps.html"><!-- A FAIRE -->
                             <i class="fas fa-chart-bar fa-2x"></i>
                             <p>Statistics</p><!-- Toutes sortes de stats -->
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="./table.html"><!-- A FAIRE -->
+                            <i class="fas fa-database fa-2x"></i>
+                            <p>Table List</p><!-- Liste des tables et leurs champs -->
                         </a>
                     </li>
                 </ul>
@@ -105,23 +105,10 @@
                             </li>
                         </ul>
                         <ul class="navbar-nav ml-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#pablo">
-                                    <span class="no-icon">Account</span>
-                                </a>
-                            </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="no-icon">Dropdown</span>
+                                <a class="nav-link " href="{{ path('home') }}">
+                                    <span class="no-icon">Retour vers la Home</span>
                                 </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                    <div class="divider"></div>
-                                    <a class="dropdown-item" href="#">Separated link</a>
-                                </div>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/logout">
@@ -138,39 +125,6 @@
                     {% block body %}{% endblock %}
                 </div>
             </div>
-            <footer class="footer">
-                <div class="container">
-                    <nav>
-                        <ul class="footer-menu">
-                            <li>
-                                <a href="#">
-                                    Home
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Company
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Portfolio
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Blog
-                                </a>
-                            </li>
-                        </ul>
-                        <p class="copyright text-center">
-                            <script>
-                                document.write(new Date().getFullYear())
-                            </script>
-                        </p>
-                    </nav>
-                </div>
-            </footer>
         </div>
     </div>
 </body>

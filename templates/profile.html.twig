@@ -1,82 +1,179 @@
 {% extends "base.html.twig" %}
+{% use "bootstrap_4_layout.html.twig" %}
+
 
 {% block title %} Bienvenue, {{ app.user.username }} {% endblock %}
 
 
 {% block body %}
-    
-<!-- DEBUT CONTENU PAGE PROFILE -->
-        
-	<!-- Début intro page profil photo cover + photo profil -->
+
+    <!-- DEBUT CONTENU PAGE PROFILE -->
+
+    <!-- Début intro page profil photo cover + photo profil -->
     <div class="page-header page-header-small" filter-color="orange">
-    	<div class="page-header-image" data-parallax="true" style="background-image: url('../assets/img/bg5.jpg') ;">
-	    </div>
-	    <div class="content-center">
-	        <div class="photo-container">
-	        	<!-- user.photoprofile -->
-	            <img src="{{ asset('uploads/photos_profile/' ~ app.user.photoProfile )}}" alt=""> 
-	        </div>
+        <div class="page-header-image" data-parallax="true" style="background-image: url('../assets/img/bg5.jpg') ;">
+        </div>
+        <div class="content-center">
+            <div class="photo-container">
+                <!-- user.photoprofile -->
+                <img src="{{ asset('uploads/photo_profile/' ~ app.user.photoProfile )}}" alt="User Image"> 
+            </div>
 
-	        <!-- user.name -->
-	        <h3 class="title">{{ app.user.firstname }} {{ app.user.lastname }}</h3>
-	    </div>
-	</div>
-	<!-- Fin intro page profil  -->
+            <!-- user.name -->
+            <h3>{{ app.user.firstname }}</h3>
+        </div>
+    </div>
+    <!-- Fin intro page profil  -->
 
-	<!-- Début Tabs -->
-	<div class="section">
-	    <div class="container">
-	        <div class="button-container">
-	        	<ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
-					<li class="nav-item">
-						<a class="nav-link active" id="profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="true">Profile</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" id="modify-profile-tab" data-toggle="tab" href="#nav-modify-profile" role="tab" aria-controls="nav-modify-profile" aria-selected="false"><i class="fas fa-sliders-h fa-2x"></i></a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" id="circle-tab" data-toggle="tab" href="#nav-circles" role="tab" aria-controls="nav-circles" aria-selected="false"><i class="fas fa-users fa-2x"></i></a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" id="add-product-tab" data-toggle="tab" href="#nav-add-product" role="tab" aria-controls="nav-add-product" aria-selected="false"><i class="fas fa-thumbtack fa-2x"></i></a>
-					</li>
-				</ul>
-				<div class="tab-content" id="myTabContent">
-					<div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="profile-tab">
-						<h3 class="title">About me</h3>
-				        <!-- user.description -->
-				        <h5 class="description text-center">{{ app.user.description }}</h5>
-				        <!-- GOOGLE MAP avec marqueurs du user -->
-				        <div class="row">
-				            <div class="col-md-12">
-				                <h4 class="title text-center">My Map</h4>
-				                <div class="nav-align-center">
-									<a href="https://placeholder.com"><img src="http://via.placeholder.com/1000x512"></a>
-								</div>
-				            </div>
-				        </div>
-					</div>
-					
-					<!-- Ajout de la page pour modifier les infos du user -->
-					<div class="tab-pane fade" id="nav-modify-profile" role="tabpanel" aria-labelledby="modify-profile-tab">
-						<p>Modify my profile!</p>
-					</div>
-					
-					<!-- Vérifier mes ajouts sur la google map -->
-					<div class="tab-pane fade" id="nav-circles" role="tabpanel" aria-labelledby="circle-tab">
-						<p>Check my circles!</p> 
-					</div>
-					
-					<!-- ajout du formulaire d'ajout de lieux -->
-					<div class="tab-pane fade" id="nav-add-product" role="tabpanel" aria-labelledby="add-product-tab">
-						<p>Add a product!</p> 
-					</div>
-				</div>
-	        </div>        
-	    </div>
-	</div>
-	<!-- Fin Tabs -->
+    <!-- Début Tabs -->
+    <div class="section">
+        <div class="container">
+            <div class="button-container">
+                <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="true">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="modify-profile-tab" data-toggle="tab" href="#nav-modify-profile" role="tab" aria-controls="nav-modify-profile" aria-selected="false"><i class="fas fa-sliders-h fa-2x"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="circle-tab" data-toggle="tab" href="#nav-circles" role="tab" aria-controls="nav-circles" aria-selected="false"><i class="fas fa-users fa-2x"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="add-product-tab" data-toggle="tab" href="{{ path('add_place') }}" role="tab" aria-controls="nav-add-product" aria-selected="false"><i class="fas fa-thumbtack fa-2x"></i></a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <h3 class="title">About me</h3>
+                        <!-- user.description -->
+                        <h5 >{{ app.user.description }}</h5>
+                        <!-- GOOGLE MAP avec marqueurs du user -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4 class="title text-center">My Map</h4>
+                                <div class="nav-align-center">
+                                    <div id="map"></div>	
+                                </div>
+                            </div>
+                        </div>
+            <!---------------------------- GOOGLE MAP avec marqueurs du user ----------------------->
+                        <div class="row">
+                            <div class="col-md-12">
+                                {{ form_start(form) }}
+                                {{ form_widget(form) }}
+                                {{ form_end(form) }} 
+                            </div>
+                        </div>
+      <!------------------------- Carousel ----------------------------->
+                       
+                            {% set foo = 'results'%}
+                            {% set plimit = 3 %}
+                            {% if results|length != 0 %}
+                                <h3>Bienvenue sur la liste des produits</h3>
+                                <div id="carouselExampleIndicators" class="carousel slide">
+                                    <ol class="carousel-indicators">
+                                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                        <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                                    </ol> 
+                                    <div class="carousel-inner" role="listbox">
+                                        {% for  key, result in results %} 
+                                        <div id ="slider-home" class="carousel-item{%if key == 1 %} active{%endif %}">
+                                            <div  class="page-header header-filter">
+                                                    <div class="page-header-image" style="background-image: url({{ asset('uploads/place/' ~ result.image )}});">
+                                                        <div class="carousel-caption d-none d-md-block">
+                                                            <h3> {{ result.title }}</h3>
+                                                            <p> {{ result.description }} </p>
+                                                            <a href="{{ path('product_details', {id : result.id}) }}">Détails</a>
+                                                        </div>
+                                                    </div> 
+                                                
+                                            </div>
+                                        </div>  
+                                        {% endfor %}                
+                                    </div>
+                                    <div class="carousel-item"></div>  
+                                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                        <i class="fas fa-angle-left fa-3x"></i>
+                                    </a>
+                                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                        <i class="fas fa-angle-right fa-3x"></i>
+                                    </a>
+                                </div>
+                            {% endif %}
 
-<!-- FIN CONTENU PAGE PROFILE -->
-    
+
+
+                            <!-- End carousel -->      
+                        </div>
+                    </div>
+
+                    <!-- Ajout de la page pour modifier les infos du user -->
+                    <div class="tab-pane fade" id="nav-modify-profile" role="tabpanel" aria-labelledby="modify-profile-tab">
+                        <p>Modify my profile!</p>
+                    </div>
+
+                    <!-- Vérifier mes ajouts sur la google map -->
+                    <div class="tab-pane fade" id="nav-circles" role="tabpanel" aria-labelledby="circle-tab">
+                        <p>Check my circles!</p> 
+                    </div>
+
+                    <!-- ajout du formulaire d'ajout de lieux -->
+                    <div class="tab-pane fade" id="nav-add-product" role="tabpanel" aria-labelledby="add-product-tab">
+                        <p>Add a product!</p> 
+                    </div>
+                </div>
+            </div>        
+        </div>
+    </div>
+    <!-- Fin Tabs -->
+
+    <!-- FIN CONTENU PAGE PROFILE -->
+    <!--   DEBUT SCRIPT MAP -->   
+    <script>
+        var markers;
+        var map;
+        function initMap(){
+        var map = new google.maps.Map(document.getElementById('map'), {
+        zoom : 13,
+                center:{lat: 48.8566, lng:2.3522},
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+        });
+        
+        
+        var markers = new Array ();
+        {% for result in results %}
+            var title = "{{ result.title }}";
+            var description = "{{ result.description }}";
+            var image = "{{ result.image }}";
+            var contentString = title + description + image;
+            markers.push(new google.maps.Marker({
+            position:{
+            lat :{{result.lat}},
+                    lng :{{result.lng}},
+            },
+                    map: map,
+                    info: new google.maps.InfoWindow({content: contentString })
+
+            }));
+            google.maps.event.addListener(markers, 'click', (function() {
+            this.info.open(map, this);
+            }));
+        {% endfor %}
+
+            var bounds = new google.maps.LatLngBounds();
+            markers.forEach(function(result){
+            bounds.extend(result.position);
+            map.fitBounds(bounds);
+            map.setZoom(13); // Not working for now
+            });
+            }
+    </script>
+    <script type="text/javascript" async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyLL_wAkO_vMlDVj_AEXH9HUKJ7lVVNTY&callback=initMap">
+    </script>       
+    <!--   FIN SCRIPT MAP -->    
+
 {% endblock %}

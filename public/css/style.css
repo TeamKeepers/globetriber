@@ -9,6 +9,11 @@ p {
     font-size: 0.9em;
 }
 
+.hidden{
+    display: none !important;
+}
+
+
 /* ***** MEDIA QUERIES ***** */ /*
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {  }

@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Constraints\Collection;
  * Recommendation
  *
  * @ORM\Table(name="recommendation")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\RecommandationRepository")
  */
 class Recommendation
 {

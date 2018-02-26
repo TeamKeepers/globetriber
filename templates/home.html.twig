@@ -3,7 +3,8 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-
-     
-
+    
+      {{render(controller(
+            'App\\Controller\\MapController::searchPlace', { 'request' : app.request } )) }} 
+ 
 {% endblock %}
