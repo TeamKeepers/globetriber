@@ -5,13 +5,13 @@ namespace App\Controller;
 use App\Entity\Place;
 use App\Entity\Recommendation;
 use App\Form\PlaceType;
-use App\Form\RecommendationType;
 use App\Service\Geocoder;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class PlaceController extends Controller {
 
@@ -72,39 +72,25 @@ class PlaceController extends Controller {
     }
     // --------------------- Requete ajout like place from user 
     /**
-     * @Route("/addplace", name="add_recommendation")  
+     * @Security("has_role('ROLE_USER')")
+     * @Route("/product/{id}/recommendation/add", name="add_recommendation")  
      */
     
-     public function addRecommendation(ObjectManager $manager, Request $request) {
+     public function addRecommendation(ObjectManager $manager, Place $place) {
 
+        // ... todo check if reco already exists
+         
         $recommendation = new Recommendation();
 
-        $form = $this->createForm(RecommendationType::class, $recommendation)
-                ->add('add', SubmitType::class);
-
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            if($recommendation['validation'] === true){
-                
-             $recommendation->setPlace($place);
-             $recommendation->setUser($user);
-             $recommendation->setComment($comment);
-             
-            }
-    
-            $manager->persist($place);
-            $manager->flush();
-
-
-            return $this->redirectToRoute('product');
-        }
-
-        return $this->render(
-                        'place_details.html.twig', array(
-                        'form' => $form->createView())
-        );
+        $recommendation->setUser($this->getUser());
         
+        $recommendation->setPlace($place);
+        
+        $manager->persist($recommendation);
+        
+        $res = $manager->flush();
+        
+        return $this->json(['id'=>$res]);
     }
 
 

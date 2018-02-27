@@ -13,6 +13,16 @@ p {
     display: none !important;
 }
 
+.row.addreco{
+    text-align: center;
+}
+.row.addreco, .row.addreco>label{
+        font-size: 1.2em;
+}
+
+input#addreco{
+    
+}
 
 /* ***** MEDIA QUERIES ***** */ /*
 // Small devices (landscape phones, 576px and up)

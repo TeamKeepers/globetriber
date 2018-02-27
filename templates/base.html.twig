@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-    
+
     <head>
         
         {% include 'meta.html.twig' %}
@@ -12,7 +12,6 @@
     </head>
     
     <body>
-        
         <header>
             
             <div id="header-row" class="row">
@@ -92,6 +91,8 @@
             
         </main>
         
+        
+        
         <footer>
             
             
@@ -100,6 +101,7 @@
     
         {% include 'scripts.html.twig' %}
         
-    </body>
 
+        {% block scripts %}{% endblock %}
+</body>
 </html>
