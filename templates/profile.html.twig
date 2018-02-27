@@ -16,7 +16,7 @@
         <div class="content-center">
             <div class="photo-container">
                 <!-- user.photoprofile -->
-                <img src="{{ asset('uploads/photo_profile/' ~ app.user.photoProfile )}}" alt="User Image"> 
+                <img src="{{ asset('uploads/photos_profile/' ~ app.user.photoProfile )}}" alt="User Image"> 
             </div>
 
             <!-- user.name -->
@@ -44,7 +44,7 @@
                     </li>
                     <li class="nav-item">
                     <!-- Lien vers Tab Addplace -->
-                        <a class="nav-link" id="add-product-tab" data-toggle="tab" href="{{ path('add_place') }}" role="tab" aria-controls="nav-add-product" aria-selected="false"><i class="fas fa-thumbtack fa-2x"></i></a>
+                        <a class="nav-link" id="add-product-tab" data-toggle="tab" href="#nav-add-product" role="tab" aria-controls="nav-add-product" aria-selected="false"><i class="fas fa-thumbtack fa-2x"></i></a>
                     </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
@@ -107,28 +107,27 @@
                             </div>
                         {% endif %}
                         <!-- End carousel -->      
-                        </div>
+                    </div>
                         <!-- Contenu Tab Modifications profile | Ajout de la page pour modifier les infos du user -->
-                        <div class="tab-pane fade" id="nav-modify-profile" role="tabpanel" aria-labelledby="modify-profile-tab">
-                            <p>Modify my profile! Work in Progress</p>
-                            <img src="https://media.giphy.com/media/kaq6GnxDlJaBq/giphy.gif"></img>
-                        </div>
+                    <div class="tab-pane fade" id="nav-modify-profile" role="tabpanel" aria-labelledby="modify-profile-tab">
+                        <p>Modify my profile! Work in Progress</p>
+                        <img src="https://media.giphy.com/media/kaq6GnxDlJaBq/giphy.gif"></img>
+                    </div>
 
-                        <!-- Contenu Tab Circles | Vérifier mes ajouts sur la google map -->
-                        <div class="tab-pane fade" id="nav-circles" role="tabpanel" aria-labelledby="circle-tab">
-                            <p>Check my circles! Work in Progress</p> 
-                            <img src="https://i1.wp.com/www.sixsigmatrainingfree.com/uploads/2/1/7/9/21795380/work-in-progress-wip.jpg?w=525"></img>
-                        </div>
+                    <!-- Contenu Tab Circles | Vérifier mes ajouts sur la google map -->
+                    <div class="tab-pane fade" id="nav-circles" role="tabpanel" aria-labelledby="circle-tab">
+                        <p>Check my circles! Work in Progress</p> 
+                        <img src="https://i1.wp.com/www.sixsigmatrainingfree.com/uploads/2/1/7/9/21795380/work-in-progress-wip.jpg?w=525"></img>
+                    </div>
 
-                        <!-- Contenu tab AddPlace | ajout du formulaire d'ajout de lieux -->
-                        <div class="tab-pane fade" id="nav-add-product" role="tabpanel" aria-labelledby="add-product-tab">
-                            <p>Add a product! Work in Progress</p>
-                            <img src="https://i1.wp.com/www.sixsigmatrainingfree.com/uploads/2/1/7/9/21795380/work-in-progress-wip.jpg?w=525"></img>
-                        </div>
+                    <!-- Contenu tab AddPlace | ajout du formulaire d'ajout de lieux -->
+                    <div class="tab-pane fade" id="nav-add-product" role="tabpanel" aria-labelledby="add-product-tab">
+                        <p>Add a product! Work in Progress</p>
+                        <img src="https://i1.wp.com/www.sixsigmatrainingfree.com/uploads/2/1/7/9/21795380/work-in-progress-wip.jpg?w=525"></img>
                     </div>
                 </div>
-            </div>        
-        </div>
+            </div>
+        </div>        
     </div>
     <!-- Fin Tabs -->
 
