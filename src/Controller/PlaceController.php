@@ -11,7 +11,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class PlaceController extends Controller {
 
@@ -72,7 +71,7 @@ class PlaceController extends Controller {
     }
     // --------------------- Requete ajout like place from user 
     /**
-     * @Security("has_role('ROLE_USER')")
+     * 
      * @Route("/product/{id}/recommendation/add", name="add_recommendation")  
      */
     

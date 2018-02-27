@@ -91,11 +91,10 @@
                                         <a  class="carousel-item{%if key == 1 %} active {%endif %}" href="{{ path('product_details', {id : result.id}) }}">
                                             <div id ="slider-home">
                                                 <div  class="page-header header-filter">
-                                                    <div class="page-header-image" style="background-image: url({{ asset('uploads/place/' ~ result.image )}});">
+                                                    <div class="page-header-image" style="background-image: url({{ asset('/uploads/place/' ~ result.image )}});">
                                                         <div class="carousel-caption d-none d-md-block">
                                                             <h3> {{ result.title }}</h3>
                                                             <p> {{ result.description }} </p>
-                                                            <a href="{{ path('product_details', {id : result.id}) }}">Détails</a>
                                                         </div>
                                                     </div> 
 
@@ -136,7 +135,6 @@
             </div>
         </div>        
     </div>
-</div>
 <!-- Fin Tabs -->
 
 <!-- FIN CONTENU PAGE PROFILE -->
