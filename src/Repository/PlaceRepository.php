@@ -75,10 +75,12 @@ class PlaceRepository extends ServiceEntityRepository {
         return $results;
     }
     
-    public function findById($recommendation){
-         $qb = $this->createQueryBuilder("r");
+    public function findByUser($user){
+         $qb = $this->createQueryBuilder("p");
         $qb
-                ->select('r.id')
+                ->select('p.id')
+                ->where('p.user = :user')
+                ->setParameter('user', $user)
                 ->setMaxResults(10)
                 ->setFirstResult(0)
         ;
@@ -87,7 +89,7 @@ class PlaceRepository extends ServiceEntityRepository {
         $i = 0;
         
         foreach ($locations as $location){ 
-            if(!empty($recommendation['location'])){
+            if(!empty($recommendation[$location])){
                 $value = $recommendation[$location];
                     $qb->orWhere('r.location = :location' . $i);
                     $qb->setParameter(':location' . $i, $value);

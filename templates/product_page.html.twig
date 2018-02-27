@@ -66,13 +66,9 @@
             <a href=""><i class="fas fa-check"></i></a>
             <a href=""><i class="fas fa-times"></i></a>
             <p>x% des gens conseillent ce lieu</p> <!-- A rendre dynamique -->
-            <div class="row">
-                <div class="col-md-12">
-                    {#Formulaire "ajouter ce lieu"
-                    {{ form_start(form) }}
-                    {{ form_widget(form) }}
-                    {{ form_end(form) }}#}
-                </div>
+            <div class="row addreco">
+                <label> Ajouter à mes lieux :</label>
+                <input type="checkbox" name="addreco" id="addreco"/>      
             </div>
         </div>
         <!-- Fin Pouce en l'air / pouce en bas -->
@@ -133,4 +129,21 @@
 </div>
 <!-- End Commentaires -->
 
+{% endblock %}
+
+
+
+{% block scripts %}
+    <script>
+        $(function(){
+            $('#addreco').change(function() {
+                console.log('checked');
+                if($(this).is(':checked')) {
+                    $.getJSON('{{ path('add_recommendation', {id : place.id}) }}', function(json) {
+                        console.log(json);
+                    });
+                }
+            });
+        });
+    </script>
 {% endblock %}

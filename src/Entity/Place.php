@@ -41,7 +41,7 @@ use Symfony\Component\Validator\Constraints\Collection;
  * }) 
  *
  */
-class Place {
+class Place  {
 
     /**
      * @var int
@@ -631,8 +631,7 @@ class Place {
         $this->types = $types;
         return $this;
     }
-    
-    
 
+    
 
 }

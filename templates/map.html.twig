@@ -15,12 +15,12 @@
 
 
 
-    
+
     <!-- Carousel -->
-   {% set foo = 'results'%}
+    {% set foo = 'results'%}
     {% set plimit = 3 %}
     {% if results|length != 0 %}
-    <h3>Bienvenue sur la liste des produits</h3>
+        <h3>Bienvenue sur la liste des produits</h3>
         <div id="carouselExampleIndicators" class="carousel slide">
             <ol class="carousel-indicators">
                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -29,19 +29,20 @@
                 <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
             </ol> 
             <div class="carousel-inner" role="listbox">
-                        {% for key,result in results %} 
-                            <div id ="slider-home" class="carousel-item{%if key == 1 %} active{%endif %}">
-                    <div  class="page-header header-filter">
-                            <div class="page-header-image" style="background-image: url({{ asset('uploads/place/' ~ result.image )}});">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h3> {{ result.title }}</h3>
-                                    <p> {{ result.description }} </p>
-                                    <a href="{{ path('product_details', {id : result.id}) }}">Détails</a>
-                                </div>
-                            </div> 
-                    </div>
-                </div>  
-                        {% endfor %}
+                {% for key,result in results %} 
+                    <a  class="carousel-item{%if key == 1 %} active {%endif %}" href="{{ path('product_details', {id : result.id}) }}">
+                        <div id ="slider-home">
+                            <div  class="page-header header-filter">
+                                <div class="page-header-image" style="background-image: url({{ asset('uploads/place/' ~ result.image )}});">
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h3> {{ result.title }}</h3>
+                                        <p> {{ result.description }} </p> 
+                                    </div>
+                                </div> 
+                            </div>
+                        </div>  
+                    </a>
+                {% endfor %}
             </div>
             <div class="carousel-item"></div>  
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -53,58 +54,67 @@
         </div>
     {% endif %}
 
-    
+
 
     <!-- End carousel -->
 
-   <script>
-      var markers;
-      var map;
-       function initMap(){
+    <script>
+        var markers;
+        var map;
+        function initMap() {
             var map = new google.maps.Map(document.getElementById('map'), {
-                zoom : 13,
-                center:{lat: 48.8566, lng:2.3522},
-                mapTypeId: google.maps.MapTypeId.ROADMAP         
-        });   
-            
-        var markers = new Array ();
- 
-        {% for result in results %}
-        var title = "{{ result.title }}";
-        var description = "{{ result.description }}";
-        var image =  "{{ result.image }}" ;
-        var contentString = title + description + image; 
-           
-            markers.push(new google.maps.Marker({
-                position:{
-                    lat : {{result.lat}},
-                    lng : {{result.lng}},
+                zoom: 13,
+                center: {lat: 48.8566, lng: 2.3522},
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
+
+            var markers = new Array();
+
+            var results
+            ={{ results | json_encode | raw }}
+                    for (var result of results) {
+                var title = result.title;
+                var description = result.description;
+                var image = result.image;
+                var contentString = '<div>' + title + description + image;
+                var marker = new google.maps.Marker({
+                    position: {
+                        lat: parseFloat(result.lat),
+                        lng: parseFloat(result.lng),
                     },
-                
-                map: map,
-                info: new google.maps.InfoWindow({content: contentString }) 
-                            
-            }));
-   
-        google.maps.event.addListener(markers, 'click', (function() {
-        this.info.open(map, this);
-         }));
-        {% endfor %}
-     
-        var bounds = new google.maps.LatLngBounds();
-        markers.forEach(function(result){
-            bounds.extend(result.position);
-            map.fitBounds(bounds);
-            map.setZoom(13); // Not working for now
-        });     
-      
-    } 
+
+                    map: map,
+                    info: new google.maps.InfoWindow({content: contentString})
+
+                });
+                google.maps.event.addListener(marker, 'click', (function () {
+                    this.info.open(map, this);
+                }));
+                markers.push(marker);
+            }
+
+
+
+            var bounds = new google.maps.LatLngBounds();
+
+            if (markers.length == 1) {
+                map.setCenter(markers[0].getPosition())
+            } else {
+                markers.forEach(function (result) {
+                    bounds.extend(result.position);
+                    map.fitBounds(bounds);
+                    map.setZoom(13); // Not working for now
+                });
+            }
+
+
+        }
     </script>
-     <script type="text/javascript" async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyLL_wAkO_vMlDVj_AEXH9HUKJ7lVVNTY&callback=initMap">
+    <script type="text/javascript" async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyLL_wAkO_vMlDVj_AEXH9HUKJ7lVVNTY&callback=initMap">
     </script>       
-   
-    
+
+
 {% endblock%}
 
 

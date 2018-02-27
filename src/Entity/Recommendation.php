@@ -3,9 +3,7 @@
 namespace App\Entity;
 
 use App\Entity\Place;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints\Collection;
 
 /**
  * Recommendation
@@ -33,7 +31,6 @@ class Recommendation
     private $place;
 
     /**
-     * @var int|null
      * @ORM\ManyToOne(targetEntity="User", inversedBy="recommendations")
      * @var User
      */
@@ -42,21 +39,17 @@ class Recommendation
     /**
      * @var bool
      *
-     * @ORM\Column(name="validation", type="boolean", nullable=false)
+     * @ORM\Column(name="validation", type="boolean")
      */
     private $validation;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="comment", type="text", length=65535, nullable=false)
+     * @ORM\Column(name="comment", type="text", length=65535)
      */
     private $comment;
     
-    public function __construct() {
-        $this->user = new ArrayCollection();
-        $this->place = new ArrayCollection();
-    }
 
     function getId() {
         return $this->id;
@@ -67,7 +60,7 @@ class Recommendation
     }
 
     function getUser() {
-        return $this->User;
+        return $this->user;
     }
 
     function getValidation() {
@@ -87,7 +80,7 @@ class Recommendation
     }
 
     function setUser($User) {
-        $this->User = $User;
+        $this->user = $User;
     }
 
     function setValidation($validation) {

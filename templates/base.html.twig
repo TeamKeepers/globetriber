@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+<html>
 
     <head>
         
@@ -11,7 +11,7 @@
         
     </head>
     
-        
+    <body>
         <header>
             
             <div id="header-row" class="row">
@@ -99,5 +99,7 @@
     
         {% include 'scripts.html.twig' %}
         
-    
+        {% block scripts %}{% endblock %}
+</body>
+</html>
 
