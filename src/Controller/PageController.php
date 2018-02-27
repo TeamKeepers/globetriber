@@ -25,16 +25,6 @@ class PageController extends Controller
       
     }
   
-//    /**
-  //   * 
-    // * @Route("/profile", name="profile")
-    // * 
-   //  */
-   // public function profile()
-  //  {
-    //    return $this->render('profile.html.twig');
-   // }
-    //*/
   
      /**
      * 
@@ -46,7 +36,9 @@ class PageController extends Controller
         return $this->render('add_place.html.twig');
     }
 
-        /**
+    
+    
+    /**
     *
     * @Route("product/{id}", name="product_details")
     *
@@ -58,8 +50,12 @@ class PageController extends Controller
        ]);
    }
    
+   
+   
     /**
+     * 
      * @Route("/profile", name="profile")
+     * 
      */
     public function UserSearch(Request $request, PlaceRepository $placeRepo) {
 
@@ -81,17 +77,25 @@ class PageController extends Controller
            
         ]);
     }
+    
+    
+  
     /**
-     * 
-     * @Route("/profile/{id}", name="profile_details")
-     * 
-     */
-    public function profileUser()
+    * 
+    * @Route("/profile/{id}", name="profile_details")
+    * 
+    */
+    public function profileUser(User $user = null)
     {
-        return $this->render('profile.html.twig');
+        if(! $user){
+            $user = $this->getUser();
+        }
+        return $this->render('profile.html.twig', [
+            'user' => $user
+        ]);
     }
+     
 
+    
+     
 }
-
-
- 

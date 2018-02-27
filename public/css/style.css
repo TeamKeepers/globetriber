@@ -66,6 +66,20 @@ main {
     padding: 0;
 }
 
+.input-group-text {
+    background-color: transparent;
+    border: none;
+}
+
+#search_bar_search, #search_bar_Recherche {
+    background: #FFF;
+    border: 1px solid 
+}
+
+#search_bar_Recherche {
+    border-left-radius: 
+}
+
 /* ***** MAP ***** */
 #map {
         height: 500px;
