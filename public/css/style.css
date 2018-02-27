@@ -37,9 +37,29 @@ input#addreco{
 // Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {  }
 */
-@media (min-width:992px) {
+@media screen and (min-width:992px) {
     #basic-addon1, #header-element {
         margin-top: 200px;
+    }
+}
+
+@media screen and (min-width: 768px) { 
+    #search_bar_search, #search_bar_Recherche {
+    background: #FFF;
+    border: 1px solid #969696;
+    }
+
+    #search_bar_search {
+        border-right: 1px;
+        padding: 16px;
+    }
+
+    #search_bar_Recherche {
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-left: 1px;
+        margin-top: 11px;
+
     }
 }
 
@@ -52,7 +72,7 @@ main {
 
 #nav-header li a {
     font-size: 1.2em;
-    min-height: 70px;
+    min-height: 62px;
     background: rgba(35, 35, 35, 0.9);
     border-right: 1px solid #F95229;
     border-left: 1px solid #F95229;
@@ -74,6 +94,29 @@ main {
 
 #icons-log {
     padding: 0;
+}
+
+.input-group-text {
+    background-color: transparent;
+    border: none;
+}
+
+#search_bar_search, #search_bar_Recherche {
+    background: #FFF;
+    border: 1px solid #969696;
+}
+
+#search_bar_search {
+    border-right: 0;
+    padding: 16px;
+}
+
+#search_bar_Recherche {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left: 0;
+    margin-top: 11px;
+    
 }
 
 /* ***** MAP ***** */
